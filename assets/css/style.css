@@ -462,6 +462,11 @@ main { padding-top: var(--hdr); }
 .brands { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .brands span { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(22px, 3vw, 40px) 16px; text-align: center; font-weight: 800; text-transform: uppercase; font-size: clamp(1rem, 1.6vw, 1.35rem); letter-spacing: .01em; transition: background .35s, color .35s; }
 .brands span:hover { background: #fff; color: #000; }
+.brands .lg { display: flex; align-items: center; justify-content: center; }
+.brands .lg img { display: block; height: clamp(30px, 3.4vw, 50px); width: auto; max-width: min(100%, 210px); object-fit: contain; transition: filter .35s; }
+.brands .lg:hover img { filter: invert(1); }
+.marquee__in .lg { display: flex; align-items: center; padding: 0 clamp(26px, 3.4vw, 60px); }
+.marquee__in .lg img { display: block; height: clamp(34px, 4.4vw, 64px); width: auto; max-width: 340px; object-fit: contain; }
 
 /* Rechtstexte */
 .legal { max-width: 860px; }

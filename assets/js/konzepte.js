@@ -7,7 +7,7 @@
       ['farben', 'Farben und Schrift', 'Eine klare Farbwelt und passende Schriften.'],
       ['brandbook', 'Brandbook', 'Alle Regeln Ihrer Marke an einem Ort.'],
       ['namecheck', 'Namens Recherche', 'Erste Prüfung, ob der Name frei ist.'],
-      ['praesentation', 'Präsentation', 'Ihr Konzept für Vermieter und Partner.']
+      ['praesentation', 'Präsentation', 'Ihr Konzept für Eigentümer und Partner.']
     ]},
     { name: 'Produkt', items: [
       ['karte', 'Speisekarte und Rezepturen', 'Angebot, Preisstruktur und Rezeptkarten.'],
