@@ -179,10 +179,10 @@ main { padding-top: var(--hdr); }
 
 /* ---------- Zahlen ---------- */
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.stat { padding: clamp(28px, 3.4vw, 48px) clamp(12px, 2vw, 28px) 0 0; border-right: 1px solid var(--line); }
+.stat { padding: clamp(28px, 3.4vw, 48px) clamp(12px, 2vw, 28px) 0 0; border-right: 1px solid var(--line); container-type: inline-size; }
 .stat:last-child { border-right: 0; }
 .stat + .stat { padding-left: clamp(16px, 2vw, 32px); }
-.stat__n { font-size: clamp(2.2rem, 4.6vw, 4.4rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.stat__n { font-size: clamp(2.2rem, 4.6vw, 4.4rem); font-size: clamp(1.7rem, 20cqw, 4.4rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; white-space: nowrap; }
 .stat__n small { font-size: .5em; letter-spacing: 0; margin-left: 4px; color: var(--red-l); }
 .stat__l { margin-top: 12px; color: var(--muted); font-size: 15px; line-height: 1.45; max-width: 16rem; }
 .section--white .stats, .section--paper .stats { border-color: rgba(0,0,0,.12); }
@@ -305,7 +305,8 @@ main { padding-top: var(--hdr); }
 .marquee__in span { font-size: clamp(1.8rem, 4.6vw, 4.2rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.02em; padding: 0 .55em; white-space: nowrap; line-height: 1.1; }
 .marquee__in span:nth-child(even) { color: transparent; -webkit-text-stroke: 1.2px rgba(255,255,255,.6); }
 .marquee__in span.dot { color: var(--red-l); -webkit-text-stroke: 0; padding: 0; }
-@keyframes marq { to { transform: translateX(-50%); } }
+@keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee__sk { will-change: transform; }
 
 /* ---------- Großes Statement ---------- */
 .giant { padding: clamp(90px, 13vw, 200px) 0; overflow: hidden; text-align: center; background: #000; }

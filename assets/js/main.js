@@ -253,7 +253,7 @@
   });
 
   // Laufband reagiert auf Scroll Tempo
-  var marq = $$('.marquee__in');
+  var marq = $$('.marquee__sk');
   if (marq.length) {
     var skew = G.quickTo(marq, 'skewX', { duration: .5, ease: 'power3' });
     ST.create({ onUpdate: function (self) { skew(Math.max(-10, Math.min(10, self.getVelocity() / -250))); } });
