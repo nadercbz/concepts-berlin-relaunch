@@ -128,10 +128,10 @@ main { padding-top: var(--hdr); }
 .hero { position: relative; height: calc(100svh - var(--hdr)); min-height: 560px; overflow: hidden; display: grid; place-items: center; background: #000; }
 .hero__media { position: absolute; inset: 0; }
 .hero__media video, .hero__media img { width: 100%; height: 100%; object-fit: cover; }
-.hero__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15) 40%, rgba(0,0,0,.6)); }
-.hero__box { position: relative; z-index: 2; width: min(92vw, 980px); background: rgba(255,255,255,.86); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #111; text-align: center; padding: clamp(26px, 3.6vw, 48px) clamp(20px, 4vw, 60px); }
-.hero__box h1 { font-size: clamp(1.55rem, 3.7vw, 3.1rem); font-weight: 800; line-height: 1.08; letter-spacing: -.01em; text-transform: uppercase; }
-.hero__box p { margin-top: 16px; font-size: clamp(.98rem, 1.3vw, 1.12rem); color: #3b3b3b; }
+.hero__shade { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(0,0,0,.5), rgba(0,0,0,0) 100%), linear-gradient(180deg, rgba(0,0,0,.42), rgba(0,0,0,.28) 40%, rgba(0,0,0,.62)); }
+.hero__box { position: relative; z-index: 2; width: min(92vw, 1100px); color: #fff; text-align: center; padding: 0 clamp(8px, 2vw, 24px); }
+.hero__box h1 { font-size: clamp(1.9rem, 5vw, 4.6rem); font-weight: 800; line-height: 1.05; letter-spacing: -.015em; text-transform: uppercase; text-shadow: 0 2px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.3); }
+.hero__box p { margin: 22px auto 0; max-width: 46rem; font-size: clamp(1.02rem, 1.45vw, 1.25rem); color: rgba(255,255,255,.94); text-shadow: 0 1px 20px rgba(0,0,0,.55); }
 .hero__strip { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 0; background: #fff; color: #111; }
 .hero__strip a, .hero__strip button { display: inline-flex; align-items: center; gap: 10px; padding: 18px clamp(16px, 3vw, 40px); font-weight: 600; font-size: 15px; letter-spacing: .02em; transition: background .3s, color .3s; min-height: 56px; }
 .hero__strip a:hover, .hero__strip button:hover { background: var(--red); color: #fff; }
