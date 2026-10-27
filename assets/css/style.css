@@ -52,7 +52,8 @@ h1, h2, h3, h4, p { margin: 0; }
 .hdr.is-hidden { transform: translateY(-100%); }
 .hdr__bar { height: var(--hdr); display: flex; align-items: center; gap: clamp(16px, 2vw, 34px); padding: 0 var(--pad); max-width: 1680px; margin: 0 auto; transition: height .4s var(--ease); }
 .hdr.is-small .hdr__bar { height: 74px; }
-.hdr__logo img { height: 36px; width: auto; transition: height .4s var(--ease); }
+.hdr__logo { flex: 0 0 auto; }
+.hdr__logo img { height: 36px; width: auto; max-width: none; transition: height .4s var(--ease); }
 .hdr.is-small .hdr__logo img { height: 32px; }
 .hdr__nav { display: flex; flex: 1; justify-content: center; gap: clamp(14px, 2.1vw, 38px); }
 .nav-i { position: relative; display: flex; flex-direction: column; padding: 6px 0 8px; }
@@ -482,7 +483,8 @@ main { padding-top: var(--hdr); }
 .js:not(.no-anim) [data-clip] { clip-path: inset(14% 10% 14% 10%); }
 
 /* ---------- Responsiv ---------- */
-@media (max-width: 1599px) { .hdr .hdr__social { display: none; } }
+.hdr .hdr__social { display: none; }
+@media (max-width: 1599px) { .nav-i__s { display: none; } }
 @media (max-width: 1240px) {
   :root { --hdr: 84px; }
   .nav-i__s { display: none; }
@@ -564,3 +566,55 @@ main { padding-top: var(--hdr); }
 }
 .section--white .refcase .stat, .section--paper .refcase .stat { border-bottom-color: rgba(0,0,0,.12); }
 main, .ftr, .cblock { overflow-x: clip; }
+
+/* ---------- Showroom: Knopf in der Kopfzeile ---------- */
+.hdr__show { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; height: 40px; padding: 0 17px 0 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,.24); background: rgba(255,255,255,.05); color: #fff; font: 700 12px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: background .4s var(--ease), border-color .4s, color .4s; }
+.hdr__show:hover, .hdr__show:focus-visible, .hdr__show[aria-expanded="true"] { background: #fff; border-color: #fff; color: #0a0a0a; }
+.hdr__show-ic { display: grid; grid-template-columns: 6px 6px; gap: 3px; transition: transform .6s var(--ease); }
+.hdr__show-ic i { width: 6px; height: 6px; border-radius: 1.5px; background: currentColor; transition: border-radius .6s var(--ease), transform .6s var(--ease); }
+.hdr__show-ic i:first-child { background: var(--red-l); }
+.hdr__show:hover .hdr__show-ic { transform: rotate(45deg); }
+.hdr__show:hover .hdr__show-ic i { border-radius: 50%; }
+.hdr__show:hover .hdr__show-ic i:nth-child(4) { transform: scale(.6); }
+
+/* ---------- Showroom: Kachelansicht ---------- */
+.shw { position: fixed; inset: 0; z-index: 140; visibility: hidden; pointer-events: none; }
+.shw.is-open { visibility: visible; pointer-events: auto; }
+.shw__bg { position: absolute; inset: 0; background: rgba(6,6,6,.5); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); opacity: 0; }
+.shw.is-open .shw__bg { opacity: 1; }
+.shw__scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.25) transparent; }
+.shw__head { position: relative; z-index: 3; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: clamp(18px, 3vw, 36px) calc(var(--pad) + 64px) clamp(14px, 2vw, 24px) var(--pad); }
+.shw__title { margin: 10px 0 0; font-size: clamp(1.8rem, 5vw, 4.4rem); font-weight: 800; line-height: .95; letter-spacing: -.03em; text-transform: uppercase; }
+.shw__meta { margin-top: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.shw__x { position: fixed; z-index: 6; top: clamp(18px, 3vw, 36px); right: var(--pad); background: rgba(10,10,10,.45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.shw__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 42vw), 1fr)); grid-auto-rows: clamp(118px, 14vw, 232px); grid-auto-flow: dense; gap: clamp(8px, 1vw, 14px); padding: 4px var(--pad) clamp(48px, 7vw, 100px); }
+.shw__t { position: relative; display: block; overflow: hidden; padding: 0; border: 0; border-radius: clamp(10px, 1.1vw, 16px); background: rgba(255,255,255,.06); cursor: zoom-in; isolation: isolate; -webkit-tap-highlight-color: transparent; }
+.shw__t--xl { grid-column: span 2; grid-row: span 2; }
+.shw__t img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 1.2s var(--ease); }
+.shw__t:hover img, .shw__t:focus-visible img { transform: scale(1.08); }
+.shw__t::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.7)); opacity: 0; transition: opacity .5s; }
+.shw__t:hover::after, .shw__t:focus-visible::after { opacity: 1; }
+.shw__t:focus-visible { outline: 2px solid var(--red-l); outline-offset: 3px; }
+.shw__cap { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2; text-align: left; opacity: 0; transform: translateY(12px); transition: opacity .45s, transform .6s var(--ease); }
+.shw__cap b { display: block; font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; line-height: 1.2; }
+.shw__cap span { display: block; margin-top: 3px; font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.78); }
+.shw__t:hover .shw__cap, .shw__t:focus-visible .shw__cap { opacity: 1; transform: none; }
+.shw__soon { position: absolute; top: 10px; left: 10px; z-index: 2; padding: 5px 9px; border-radius: 999px; background: var(--red); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+@media (hover: none) { .shw__cap { opacity: 1; transform: none; } .shw__t::after { opacity: .85; } }
+@media (max-width: 1023px) {
+  .hdr__show { margin-left: auto; height: 38px; padding: 0 14px 0 12px; }
+  .hdr__burger { margin-left: 6px; }
+}
+@media (max-width: 420px) {
+  .hdr__show { letter-spacing: .1em; gap: 8px; padding: 0 12px 0 11px; }
+  .shw__cap b { font-size: 12px; }
+  .shw__cap span { font-size: 10px; }
+}
+
+/* Kopfzeile in Stufen: volles Menü erst ab 1280 px, darunter Burger plus Showroom Knopf */
+@media (max-width: 1400px) { .hdr__nav { gap: 22px; } }
+@media (max-width: 1279px) {
+  .hdr__nav, .hdr__right { display: none; }
+  .hdr__burger { display: block; margin-left: 6px; }
+  .hdr__show { margin-left: auto; }
+}

@@ -73,21 +73,24 @@
   var lb = d.getElementById('lb');
   if (lb) {
     var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.lb__cap'), lbNum = lb.querySelector('.lb__num');
-    var list = [], li = 0, lastFocus = null;
+    var list = [], caps = null, li = 0, lastFocus = null;
     function show(k) {
       li = (k + list.length) % list.length; lbImg.src = list[li];
       lbNum.textContent = (li + 1) + ' / ' + list.length;
+      if (caps) lbCap.innerHTML = caps[li];
       lb.querySelector('.lb__nav').style.visibility = list.length > 1 ? '' : 'hidden';
     }
     function openLb(media) {
-      var imgs = $$('img', media);
+      var imgs = $$('img', media); caps = null;
       list = imgs.map(function (im) { return im.dataset.full || im.dataset.src || im.src; });
       var card = media.closest('.card');
       lbCap.innerHTML = card ? (card.querySelector('h3').textContent + '<span>' + (card.querySelector('.card__body p') || { textContent: '' }).textContent + '</span>') : '';
       lastFocus = media; show(media._idx ? media._idx() : 0);
       lb.classList.add('is-open'); body.style.overflow = 'hidden'; lb.querySelector('.lb__x').focus();
     }
-    function closeLb() { lb.classList.remove('is-open'); body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+    function closeLb() { lb.classList.remove('is-open'); body.style.overflow = d.querySelector('.shw.is-open') ? 'hidden' : ''; if (lastFocus) lastFocus.focus(); }
+    /* Für den Showroom: beliebige Bildliste mit eigener Unterschrift je Bild */
+    window.__lbOpenList = function (urls, capList, k, focusEl) { list = urls; caps = capList || null; lastFocus = focusEl || null; show(k || 0); lb.classList.add('is-open'); body.style.overflow = 'hidden'; lb.querySelector('.lb__x').focus(); };
     $$('.card__media').forEach(function (m) {
       m.setAttribute('tabindex', '0'); m.setAttribute('role', 'button'); m.setAttribute('aria-label', 'Bilder groß ansehen');
       m.addEventListener('click', function (e) { if (m._swiped || e.target.closest('.slider__btn')) return; openLb(m); });
