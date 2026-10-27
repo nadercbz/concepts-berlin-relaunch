@@ -266,6 +266,17 @@ main { padding-top: var(--hdr); }
 .slider__dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 6px; }
 .slider__dots i { width: 22px; height: 3px; background: rgba(255,255,255,.5); transition: background .3s, width .4s var(--ease); }
 .slider__dots i.is-on { background: #fff; width: 36px; }
+/* Visualisierung: Kacheln von Rand zu Rand, ohne Zwischenräume, Titel liegt unten auf dem Bild */
+.section--bleed { padding-bottom: 0; }
+.cards--bleed { gap: 0; }
+.cards--bleed .card { position: relative; background: #000; color: #fff; }
+.cards--bleed .card__media { aspect-ratio: 16 / 10; background: #111; }
+.cards--bleed .card__body { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; pointer-events: none; text-align: left;
+  padding: clamp(60px, 7vw, 120px) clamp(150px, 12vw, 200px) clamp(20px, 2.4vw, 36px) clamp(18px, 2.4vw, 40px);
+  background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.45) 55%, rgba(0,0,0,0) 100%); }
+.cards--bleed .card__body h3 { color: #fff; font-size: clamp(1.1rem, 1.6vw, 1.55rem); }
+.cards--bleed .card__body p { color: rgba(255,255,255,.78); max-width: 46rem; }
+.cards--bleed .slider__dots { left: auto; right: clamp(18px, 2.4vw, 40px); bottom: clamp(26px, 2.8vw, 44px); justify-content: flex-end; }
 
 /* Lightbox */
 .lb { position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,.94); display: grid; grid-template-rows: auto 1fr auto; opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s; }
@@ -530,6 +541,10 @@ main { padding-top: var(--hdr); }
 @media (max-width: 767px) {
   body { font-size: 16px; }
   .cards { grid-template-columns: 1fr; }
+  .cards--bleed .card__media { aspect-ratio: 4 / 3; }
+  .cards--bleed .card__body { padding: 70px 18px 18px; }
+  .cards--bleed .card__body p { font-size: 14px; margin-top: 6px; }
+  .cards--bleed .slider__dots { display: none; }
   .tiles { grid-template-columns: 1fr; gap: 10px; }
   .tile, .tile:nth-child(5) { grid-column: span 1; min-height: 300px; }
   .steps { grid-template-columns: 1fr; }
