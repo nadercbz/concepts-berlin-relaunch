@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/img/vis/maxim-potsdamer-platz-1.jpg">
 <link rel="icon" href="assets/logo/favicon.png">
 <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=1793186516">
+<link rel="stylesheet" href="assets/css/style.css?v=1793187330">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-visualisierung">
@@ -64,17 +64,57 @@
 
 <section class="lgen" id="baukasten" data-lgen>
   <div class="wrap lgen__head">
-    <div class="sh"><p class="kicker">3D Baukasten</p><h2 class="h2" data-split>Zeigen Sie uns, <em>welchen Laden Sie planen.</em></h2><p class="lead" data-reveal>Wählen Sie Branche und Fläche, und der Laden setzt sich vor Ihren Augen zusammen. <span class="lgen__hd">Drehen Sie das Modell mit der Maus, zoomen Sie mit <span class="lgen__k">⌘</span> und Scrollen, klicken Sie auf ein Teil.</span><span class="lgen__hm">Wischen zum Drehen, Teile antippen.</span></p>
+    <div class="sh"><p class="kicker">3D Baukasten</p><h2 class="h2" data-split>Zeigen Sie uns, <em>welchen Laden Sie planen.</em></h2><p class="lead" data-reveal>Wählen Sie die Branche und stellen Sie die Fläche in Quadratmetern ein, der Laden setzt sich vor Ihren Augen zusammen. <span class="lgen__hd">Drehen Sie das Modell mit der Maus, zoomen Sie mit <span class="lgen__k">⌘</span> und Scrollen, klicken Sie auf ein Teil.</span><span class="lgen__hm">Wischen zum Drehen, Teile antippen.</span></p>
       <p class="lgen__note" data-reveal><b>Grobe Vorstellung</b><span>Das Modell gibt uns und Ihnen einen ersten Eindruck, um welche Art von Laden es geht. Aufteilung, Maße und Ausstattung sind Beispiele und keine fertige Planung. Die entsteht gemeinsam mit Ihnen.</span></p>
     </div>
   </div>
   </div>
   <div class="lgen__frame">
+    <aside class="lgen__size" data-size aria-label="Fläche einstellen">
+      <div class="lgen__size-h">
+        <p class="lgen__cap">Ihre Fläche</p>
+        <label class="lgen__big"><input type="number" inputmode="numeric" min="30" max="260" step="1" value="76" data-size-num aria-label="Fläche in Quadratmetern"><span>m²</span></label>
+        <p class="lgen__wd" data-size-dim aria-live="polite"></p>
+      </div>
+      <div class="lgen__sl">
+        <button type="button" class="lgen__st" data-size-step="-5" aria-label="5 Quadratmeter weniger"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>
+        <input type="range" min="30" max="260" step="1" value="76" data-size-range aria-label="Fläche mit dem Regler einstellen">
+        <button type="button" class="lgen__st" data-size-step="5" aria-label="5 Quadratmeter mehr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button>
+      </div>
+      <div class="lgen__sl-m" aria-hidden="true"><span>30 m²</span><span>260 m²</span></div>
+      <button type="button" class="lgen__more" data-size-toggle aria-expanded="false" aria-controls="lgen-size-body"><span>Mehr einstellen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="lgen__size-b" id="lgen-size-body">
+        <p class="lgen__cap">Zuschnitt</p>
+        <div class="lgen__seg" role="group" aria-label="Zuschnitt" data-seg="shape">
+          <button type="button" data-v="s" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="2.5" width="7" height="19" rx="1.2"/></svg><span>Schmal</span></button>
+          <button type="button" data-v="n" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="1.2"/></svg><span>Kompakt</span></button>
+          <button type="button" data-v="b" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7.5" width="19" height="9" rx="1.2"/></svg><span>Breit</span></button>
+        </div>
+        <p class="lgen__cap">Eingang</p>
+        <div class="lgen__seg" role="group" aria-label="Eingang" data-seg="door">
+          <button type="button" data-v="l" aria-pressed="false"><span>Links</span></button>
+          <button type="button" data-v="m" aria-pressed="false"><span>Mitte</span></button>
+          <button type="button" data-v="r" aria-pressed="false"><span>Rechts</span></button>
+        </div>
+        <p class="lgen__cap">Lage</p>
+        <div class="lgen__tgs" role="group" aria-label="Lage">
+          <button type="button" data-tg="corner" aria-pressed="false"><i></i><span>Ecklage mit Seitenfenster</span></button>
+          <button type="button" data-tg="open" aria-pressed="false"><i></i><span>Offene Front</span></button>
+        </div>
+        <p class="lgen__cap">Aufteilung</p>
+        <div class="lgen__split" aria-hidden="true"><i data-split="back"></i><i data-split="front"></i></div>
+        <ul class="lgen__legend">
+          <li><i class="b"></i><span data-split-l="back">Küche und Lager</span><b data-split-v="back"></b></li>
+          <li><i class="f"></i><span data-split-l="front">Gastraum</span><b data-split-v="front"></b></li>
+        </ul>
+      </div>
+    </aside>
+    <div class="lgen__main">
     <div class="lgen__stage" data-lgen-stage>
       <canvas class="lgen__cv" aria-label="3D Modell eines Ladens"></canvas>
       <div class="lgen__load" aria-hidden="true"><i></i><span>3D Modell lädt</span></div>
       <div class="lgen__nogl">Ihr Browser zeigt leider kein 3D. Gern zeigen wir Ihnen Ihren Laden im Gespräch.</div>
-      <div class="lgen__areas" role="group" aria-label="Fläche wählen"><button type="button" data-area="kiosk" aria-pressed="false"><b>Kiosk</b><span>36 m²</span></button><button type="button" data-area="eck" aria-pressed="false"><b>Eckladen</b><span>76 m²</span></button><button type="button" data-area="schlauch" aria-pressed="false"><b>Schlauch</b><span>87 m²</span></button><button type="button" data-area="center" aria-pressed="false"><b>Center</b><span>135 m²</span></button></div>
+      <div class="lgen__areas" role="group" aria-label="Fläche wählen"><button type="button" data-area="kiosk" aria-pressed="false"><b>Kiosk</b><span>36 m²</span></button><button type="button" data-area="eck" aria-pressed="false"><b>Eckladen</b><span>76 m²</span></button><button type="button" data-area="schlauch" aria-pressed="false"><b>Schlauch</b><span>87 m²</span></button><button type="button" data-area="center" aria-pressed="false"><b>Center</b><span>135 m²</span></button><button type="button" data-area="custom" aria-pressed="false"><b>Eigene</b><span data-custom-m2>frei wählen</span></button></div>
       <div class="lgen__stats" aria-live="polite"></div>
       <div class="lgen__tools" role="toolbar" aria-label="Ansicht"><button type="button" data-act="dice" title="Neu würfeln" aria-label="Neu würfeln"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="15" r="1.2"/><circle cx="15" cy="9" r="1.2"/><circle cx="9" cy="15" r="1.2"/></svg></button><button type="button" data-act="view" title="Grundriss" aria-label="Grundriss" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-plan" d="M4 4h16v16H4zM4 12h8.5M12.5 4v16"/><path class="i-3d" d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></button><button type="button" data-act="zoomin" title="Näher" aria-label="Näher"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M10.5 7.5v6M7.5 10.5h6M15 15l5 5"/></svg></button><button type="button" data-act="zoomout" title="Weiter weg" aria-label="Weiter weg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M7.5 10.5h6M15 15l5 5"/></svg></button><button type="button" data-act="reset" title="Ansicht zurücksetzen" aria-label="Ansicht zurücksetzen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 107.5-7.5"/><path d="M4.5 4.5V9H9"/></svg></button><button type="button" data-act="sound" title="Ton aus" aria-label="Ton aus" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="i-on" d="M16 9.5a3.5 3.5 0 010 5M18.5 7a7 7 0 010 10"/><path class="i-off" d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg></button><button type="button" data-act="full" title="Vollbild" aria-label="Vollbild" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
       <div class="lgen__hint"><span class="lgen__hd">Ziehen zum Drehen · <span class="lgen__k">⌘</span> + Scrollen zum Zoomen · Tasten 1 bis 0</span><span class="lgen__hm">Wischen zum Drehen · Vollbild für alle Gesten</span></div>
@@ -93,6 +133,7 @@
       <button type="button" data-cat="markt" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 4.5h2.5l2.2 10.5h11l2-7.5H6"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg><span>Mini Markt</span><kbd>8</kbd></button>
       <button type="button" data-cat="nails" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9.5" y="2.5" width="5" height="6" rx="1"/><rect x="6.5" y="8.5" width="11" height="13" rx="3"/></svg><span>Nagelstudio</span><kbd>9</kbd></button>
       <button type="button" data-cat="mode" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6.5a2 2 0 114 0c0 1.2-2 1.6-2 3"/><path d="M12 9.5L3 16.5V18h18v-1.5z"/></svg><span>Boutique</span><kbd>0</kbd></button>
+    </div>
     </div>
   </div>
   <div class="wrap lgen__foot">
@@ -272,8 +313,8 @@
 <script src="assets/libs/gsap.min.js"></script>
 <script src="assets/libs/ScrollTrigger.min.js"></script>
 <script src="assets/libs/SplitText.min.js"></script>
-<script src="assets/js/lgen.js?v=1793186516"></script>
-<script src="assets/js/main.js?v=1793186516"></script>
-<script src="assets/js/showroom.js?v=1793186516"></script>
+<script src="assets/js/lgen.js?v=1793187330"></script>
+<script src="assets/js/main.js?v=1793187330"></script>
+<script src="assets/js/showroom.js?v=1793187330"></script>
 </body>
 </html>
