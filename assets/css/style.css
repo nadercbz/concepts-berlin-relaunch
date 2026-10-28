@@ -879,7 +879,7 @@ html.lplan-lock { overflow: hidden; }
 .lplan__sec h4 { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; font-size: 14.5px; font-weight: 800; }
 .lplan__sec h4 i { flex: none; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--red); color: #fff; font: 700 12px var(--sans); font-style: normal; }
 .lplan__sec p { color: #555; font-size: 13.5px; line-height: 1.5; }
-.lplan__sec p.is-todo { color: var(--red); font-weight: 600; }
+.lplan__sec p.is-todo { color: #111; font-weight: 600; box-shadow: -4px 0 0 var(--red); padding-left: 10px; margin-left: 4px; }
 .lplan__small { margin-top: 6px; font-size: 12.5px !important; }
 .lplan__row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .lplan__b { padding: 9px 13px; border-radius: 10px; background: #f3f2ef; box-shadow: inset 0 0 0 1px rgba(0,0,0,.07); font-size: 13px; font-weight: 700; transition: background .2s, color .2s, opacity .2s, transform .2s var(--ease); }
@@ -904,6 +904,18 @@ html.lplan-lock { overflow: hidden; }
 .lplan__read b { font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums; }
 .lplan__warn { flex: 1 0 100%; padding: 9px 12px; border-radius: 10px; background: #fff3e0; color: #7a4400; font-size: 13px; font-weight: 600; line-height: 1.45; }
 .lplan__f { position: sticky; bottom: 0; margin: auto -18px 0; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; padding: 12px 18px 16px; background: linear-gradient(to top, #fff 70%, rgba(255,255,255,0)); }
+
+.lplan__sec.is-done h4 i { background: #2e8b57; }
+.lplan__sec.is-done h4 i::after { content: ""; }
+.lplan__b--p[aria-pressed="true"] { background: #111; }
+.lplan__b[data-pick][aria-pressed="true"] { background: #111; color: #fff; }
+.lplan__banner { position: absolute; z-index: 4; left: 12px; right: 64px; top: 12px; display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 16px; border-radius: 14px; background: #111; color: #fff; font-size: 14px; font-weight: 700; line-height: 1.35; box-shadow: 0 14px 34px -12px rgba(0,0,0,.55); animation: lplanIn .35s var(--ease); }
+.lplan__banner[hidden] { display: none; }
+.lplan__banner span { flex: 1; }
+.lplan__banner button { flex: none; padding: 8px 14px; border-radius: 9px; background: #fff; color: #111; font-size: 13px; font-weight: 800; }
+.lplan__banner button[hidden] { display: none; }
+.lplan__banner.is-note { background: #2e8b57; }
+@keyframes lplanIn { from { transform: translateY(-8px); opacity: 0; } }
 @media (max-width: 900px) {
   .lplan { padding: 0; }
   .lplan__box { height: 100dvh; border-radius: 0; }
