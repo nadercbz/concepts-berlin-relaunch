@@ -101,7 +101,7 @@ main { padding-top: var(--hdr); }
 .kicker::before { content: ""; width: 28px; height: 1px; background: currentColor; }
 .section--white .kicker, .section--paper .kicker { color: var(--red); }
 .section--red .kicker { color: #fff; }
-.h2 { font-size: clamp(2.1rem, 5.4vw, 4.8rem); font-weight: 800; line-height: 1; letter-spacing: -.025em; text-transform: uppercase; margin-top: 18px; }
+.h2 { font-size: clamp(1.95rem, 5.4vw, 4.8rem); font-weight: 800; line-height: 1; letter-spacing: -.025em; text-transform: uppercase; margin-top: 18px; }
 .h2 em { font-style: normal; color: var(--red-l); }
 .section--white .h2 em, .section--paper .h2 em { color: var(--red); }
 .h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 700; line-height: 1.2; }
@@ -109,6 +109,9 @@ main { padding-top: var(--hdr); }
 .section--white .lead, .section--paper .lead { color: #4a4a4a; }
 .sh { max-width: 64rem; margin-bottom: clamp(44px, 6vw, 80px); }
 .sh--center { margin-left: auto; margin-right: auto; text-align: center; }
+.sh--wide { max-width: none; }
+/* Überschrift mit sehr langem Wort (Entscheidungssicherheit): Schrift so wählen, dass das Wort in jede Breite passt */
+.h2--long { font-size: clamp(1.4rem, 6.1vw, 4.8rem); }
 .sh--center .kicker::after { content: ""; width: 28px; height: 1px; background: currentColor; }
 .split-line { overflow: hidden; display: block; padding-bottom: .04em; margin-bottom: -.04em; }
 
