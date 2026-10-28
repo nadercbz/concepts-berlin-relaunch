@@ -206,7 +206,7 @@ main { padding-top: var(--hdr); }
 .hgal__cap b { font-weight: 700; text-transform: uppercase; letter-spacing: .02em; }
 .hgal__cap span { color: var(--muted); font-family: var(--mono); font-size: 12px; white-space: nowrap; }
 .hgal__item--end { width: clamp(260px, 30vw, 440px); display: grid; place-items: center; border: 1px solid var(--line); aspect-ratio: auto; }
-.hgal__item--end a { text-align: center; padding: 40px; }
+.hgal__item--end a { text-align: center; padding: 40px; max-width: 100%; }
 .hgal__item--end b { display: block; font-size: clamp(1.4rem, 2.4vw, 2rem); text-transform: uppercase; font-weight: 800; line-height: 1.05; }
 
 /* ---------- Split Abschnitte (Bild und Text) ---------- */
@@ -537,6 +537,8 @@ main { padding-top: var(--hdr); }
   .hgal__track::-webkit-scrollbar { display: none; }
   .hgal__item { width: 78vw; scroll-snap-align: start; }
   .hgal__item--end { width: 62vw; }
+  .hgal__item--end a { padding: 24px 14px; }
+  .hgal__item--end b { font-size: clamp(1.05rem, 5.2vw, 1.4rem); }
   .slider__btn { opacity: 1; transform: none; width: 44px; height: 44px; }
 }
 @media (max-width: 767px) {

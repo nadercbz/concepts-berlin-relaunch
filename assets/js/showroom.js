@@ -1,4 +1,4 @@
-/* Showroom: Kachelansicht aller Visualisierungen. Öffnet über jeden Knopf mit data-showroom, Klick auf eine Kachel öffnet die Lightbox. */
+/* Showroom: Kachelansicht der Visualisierungen. Öffnet über jeden Knopf mit data-showroom, Klick auf eine Kachel öffnet die Lightbox. */
 (function () {
   'use strict';
   var d = document, body = d.body, sr = d.getElementById('showroom');
