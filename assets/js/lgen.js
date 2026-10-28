@@ -15,6 +15,7 @@
   function load() {
     var s = document.createElement('script');
     s.src = 'assets/js/ladenbau3d.js' + (v ? '?' + v : '');
+    s.type = 'module';
     s.async = true;
     document.body.appendChild(s);
   }
