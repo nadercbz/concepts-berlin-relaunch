@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/img/vis/maxim-potsdamer-platz-1.jpg">
 <link rel="icon" href="assets/logo/favicon.png">
 <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=1793187330">
+<link rel="stylesheet" href="assets/css/style.css?v=1793217754">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-visualisierung">
@@ -81,7 +81,13 @@
         <input type="range" min="30" max="260" step="1" value="76" data-size-range aria-label="Fläche mit dem Regler einstellen">
         <button type="button" class="lgen__st" data-size-step="5" aria-label="5 Quadratmeter mehr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button>
       </div>
-      <div class="lgen__sl-m" aria-hidden="true"><span>30 m²</span><span>260 m²</span></div>
+      <div class="lgen__sl-m" aria-hidden="true"><span data-sl-min>30 m²</span><span data-sl-max>260 m²</span></div>
+      <p class="lgen__cap lgen__cap--row"><span>Grundform</span><button type="button" class="lgen__flip" data-flip aria-pressed="false" title="Form spiegeln"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M8 7L3 17h5zM16 7l5 10h-5z"/></svg><span>Spiegeln</span></button></p>
+      <div class="lgen__forms" role="group" aria-label="Grundform" data-forms><button type="button" data-form="rect" aria-pressed="false"></button><button type="button" data-form="lb" aria-pressed="false"></button><button type="button" data-form="lf" aria-pressed="false"></button><button type="button" data-form="t" aria-pressed="false"></button><button type="button" data-form="tu" aria-pressed="false"></button><button type="button" data-form="u" aria-pressed="false"></button><button type="button" data-form="z" aria-pressed="false"></button></div>
+      <div class="lgen__plan">
+        <button type="button" class="lgen__up" data-plan-open><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M4 14.5V19a1 1 0 001 1h14a1 1 0 001-1v-4.5"/></svg><span><b>Eigenen Grundriss laden</b><i>PDF, JPG oder PNG. Die Datei bleibt in Ihrem Browser.</i></span></button>
+        <div class="lgen__chip" data-plan-chip hidden><span class="lgen__chip-t"><b>Ihr Plan</b><i data-plan-sum></i></span><button type="button" data-plan-edit>Ändern</button><button type="button" data-plan-del aria-label="Plan entfernen" title="Plan entfernen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      </div>
       <button type="button" class="lgen__more" data-size-toggle aria-expanded="false" aria-controls="lgen-size-body"><span>Mehr einstellen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="lgen__size-b" id="lgen-size-body">
         <p class="lgen__cap">Zuschnitt</p>
@@ -114,7 +120,7 @@
       <canvas class="lgen__cv" aria-label="3D Modell eines Ladens"></canvas>
       <div class="lgen__load" aria-hidden="true"><i></i><span>3D Modell lädt</span></div>
       <div class="lgen__nogl">Ihr Browser zeigt leider kein 3D. Gern zeigen wir Ihnen Ihren Laden im Gespräch.</div>
-      <div class="lgen__areas" role="group" aria-label="Fläche wählen"><button type="button" data-area="kiosk" aria-pressed="false"><b>Kiosk</b><span>36 m²</span></button><button type="button" data-area="eck" aria-pressed="false"><b>Eckladen</b><span>76 m²</span></button><button type="button" data-area="schlauch" aria-pressed="false"><b>Schlauch</b><span>87 m²</span></button><button type="button" data-area="center" aria-pressed="false"><b>Center</b><span>135 m²</span></button><button type="button" data-area="custom" aria-pressed="false"><b>Eigene</b><span data-custom-m2>frei wählen</span></button></div>
+      <div class="lgen__areas" role="group" aria-label="Fläche wählen"><button type="button" data-area="kiosk" aria-pressed="false"><b>Kiosk</b><span>36 m²</span></button><button type="button" data-area="eck" aria-pressed="false"><b>Eckladen</b><span>76 m²</span></button><button type="button" data-area="schlauch" aria-pressed="false"><b>Schlauch</b><span>87 m²</span></button><button type="button" data-area="center" aria-pressed="false"><b>Center</b><span>135 m²</span></button><button type="button" data-area="custom" aria-pressed="false"><b>Eigene</b><span data-custom-m2>frei wählen</span></button><button type="button" data-area="plan" aria-pressed="false" hidden><b>Ihr Plan</b><span></span></button></div>
       <div class="lgen__stats" aria-live="polite"></div>
       <div class="lgen__tools" role="toolbar" aria-label="Ansicht"><button type="button" data-act="dice" title="Neu würfeln" aria-label="Neu würfeln"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="15" r="1.2"/><circle cx="15" cy="9" r="1.2"/><circle cx="9" cy="15" r="1.2"/></svg></button><button type="button" data-act="view" title="Grundriss" aria-label="Grundriss" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-plan" d="M4 4h16v16H4zM4 12h8.5M12.5 4v16"/><path class="i-3d" d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></button><button type="button" data-act="zoomin" title="Näher" aria-label="Näher"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M10.5 7.5v6M7.5 10.5h6M15 15l5 5"/></svg></button><button type="button" data-act="zoomout" title="Weiter weg" aria-label="Weiter weg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M7.5 10.5h6M15 15l5 5"/></svg></button><button type="button" data-act="reset" title="Ansicht zurücksetzen" aria-label="Ansicht zurücksetzen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 107.5-7.5"/><path d="M4.5 4.5V9H9"/></svg></button><button type="button" data-act="sound" title="Ton aus" aria-label="Ton aus" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="i-on" d="M16 9.5a3.5 3.5 0 010 5M18.5 7a7 7 0 010 10"/><path class="i-off" d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg></button><button type="button" data-act="full" title="Vollbild" aria-label="Vollbild" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
       <div class="lgen__hint"><span class="lgen__hd">Ziehen zum Drehen · <span class="lgen__k">⌘</span> + Scrollen zum Zoomen · Tasten 1 bis 0</span><span class="lgen__hm">Wischen zum Drehen · Vollbild für alle Gesten</span></div>
@@ -313,8 +319,8 @@
 <script src="assets/libs/gsap.min.js"></script>
 <script src="assets/libs/ScrollTrigger.min.js"></script>
 <script src="assets/libs/SplitText.min.js"></script>
-<script src="assets/js/lgen.js?v=1793187330"></script>
-<script src="assets/js/main.js?v=1793187330"></script>
-<script src="assets/js/showroom.js?v=1793187330"></script>
+<script src="assets/js/lgen.js?v=1793217754"></script>
+<script src="assets/js/main.js?v=1793217754"></script>
+<script src="assets/js/showroom.js?v=1793217754"></script>
 </body>
 </html>

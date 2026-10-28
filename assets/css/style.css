@@ -800,6 +800,119 @@ main, .ftr, .cblock { overflow-x: clip; }
   .lgen__size.is-open .lgen__size-b { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; }
   .lgen__size-b > .lgen__cap:first-child { margin-top: 18px; }
 }
+
+/* Grundform und Grundriss laden */
+.lgen__cap--row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.lgen__flip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px 3px 7px; border-radius: 999px; background: #f3f2ef; color: #111; box-shadow: inset 0 0 0 1px rgba(0,0,0,.07); font: 600 11px/1.4 var(--sans); letter-spacing: .02em; text-transform: none; transition: background .2s, color .2s, opacity .2s; }
+.lgen__flip svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; }
+.lgen__flip:hover:not(:disabled) { background: #e9e7e2; }
+.lgen__flip[aria-pressed="true"] { background: #111; color: #fff; }
+.lgen__flip:disabled { opacity: .38; cursor: default; }
+.lgen__forms { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.lgen__forms button { aspect-ratio: 1; min-width: 0; display: grid; place-items: center; border-radius: 10px; background: #f3f2ef; color: #111; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); transition: background .2s, color .2s, transform .2s var(--ease); }
+.lgen__forms button:not([aria-pressed="true"]):hover { background: #e9e7e2; }
+.lgen__forms button[aria-pressed="true"] { background: #111; color: #fff; }
+.lgen__forms svg { width: 78%; height: 78%; fill: currentColor; fill-opacity: .13; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; transition: transform .35s var(--ease); }
+.lgen__forms svg .fr { stroke: var(--red-l); stroke-width: 2.6; stroke-linecap: round; fill: none; }
+.lgen__forms button[aria-pressed="true"] svg .fr { stroke: #ff8a80; }
+.lgen__forms.is-flip svg { transform: scaleX(-1); }
+.lgen__plan { margin-top: 12px; display: grid; gap: 6px; }
+.lgen__up { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 12px; border-radius: 14px; text-align: left; background: #fff; color: #111; box-shadow: inset 0 0 0 1.5px var(--red), 0 8px 20px -14px rgba(169,27,24,.55); transition: background .2s, color .2s, transform .25s var(--ease); }
+.lgen__up:hover { background: var(--red); color: #fff; transform: translateY(-1px); }
+.lgen__up svg { flex: none; width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.lgen__up span { display: grid; gap: 1px; min-width: 0; }
+.lgen__up b { font-size: 13.5px; font-weight: 800; line-height: 1.25; }
+.lgen__up i { font-style: normal; font-size: 11.5px; line-height: 1.35; opacity: .66; }
+.lgen__chip { display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; border-radius: 12px; background: #f3f2ef; box-shadow: inset 0 0 0 1px rgba(0,0,0,.07); }
+.lgen__chip[hidden] { display: none; }
+.lgen__chip-t { display: grid; flex: 1; min-width: 0; }
+.lgen__chip-t b { font-size: 12.5px; font-weight: 800; }
+.lgen__chip-t i { font: 500 11px/1.3 var(--mono); font-style: normal; color: #666; }
+.lgen__chip button { flex: none; padding: 7px 10px; border-radius: 9px; font-size: 12px; font-weight: 700; background: #fff; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); transition: background .2s, color .2s; }
+.lgen__chip button:hover { background: #111; color: #fff; }
+.lgen__chip button svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.lgen__chip button[data-plan-del] { padding: 7px; }
+.lgen__areas [hidden] { display: none; }
+.lgen__seg button:disabled, .lgen__tgs button:disabled { opacity: .4; cursor: default; }
+
+/* Plan einlesen (Dialog im Baukasten) */
+html.lplan-lock { overflow: hidden; }
+.lplan { position: fixed; inset: 0; z-index: 600; display: grid; place-items: center; padding: 16px; background: rgba(10,10,10,.6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #111; font-family: var(--sans); }
+.lplan[hidden] { display: none; }
+.lplan__box { display: flex; flex-direction: column; width: min(1280px, 100%); height: min(820px, calc(100dvh - 32px)); border-radius: 22px; background: #fff; box-shadow: 0 40px 120px -30px rgba(0,0,0,.6); overflow: hidden; }
+.lplan__h { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px 14px 24px; border-bottom: 1px solid rgba(0,0,0,.08); }
+.lplan__h h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: .01em; }
+.lplan__x { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: #f3f2ef; transition: background .2s, color .2s; }
+.lplan__x:hover { background: #111; color: #fff; }
+.lplan__x svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.lplan__drop { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: clamp(16px, 3vw, 40px); max-width: 760px; width: 100%; margin: 0 auto; }
+.lplan__drop[hidden], .lplan__busy[hidden], .lplan__ed[hidden] { display: none; }
+.lplan__dz { display: grid; justify-items: center; gap: 8px; padding: clamp(28px, 5vw, 56px) 20px; text-align: center; border-radius: 20px; background: #f7f6f3; box-shadow: inset 0 0 0 2px rgba(0,0,0,.12); background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgba(0,0,0,.025) 14px 28px); cursor: pointer; transition: box-shadow .2s, background-color .2s, transform .25s var(--ease); outline: none; }
+.lplan__dz:hover, .lplan__dz:focus-visible, .lplan__dz.is-over { background-color: #fff; box-shadow: inset 0 0 0 2px var(--red); transform: translateY(-2px); }
+.lplan__dz svg { width: 44px; height: 44px; fill: none; stroke: var(--red); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.lplan__dz b { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 800; }
+.lplan__dz span { max-width: 32rem; color: #555; font-size: 14.5px; line-height: 1.5; }
+.lplan__notes { display: grid; gap: 8px; padding: 0; margin: 0; list-style: none; color: #555; font-size: 14px; line-height: 1.5; }
+.lplan__notes li { position: relative; padding-left: 22px; }
+.lplan__notes li::before { content: ""; position: absolute; left: 0; top: .55em; width: 9px; height: 9px; border-radius: 3px; background: var(--red); }
+.lplan__err { padding: 12px 16px; border-radius: 12px; background: #fdecea; color: #8c1a14; font-size: 14.5px; line-height: 1.5; }
+.lplan__err[hidden] { display: none; }
+.lplan__busy { flex: 1; display: grid; place-content: center; justify-items: center; gap: 16px; font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #777; }
+.lplan__busy i { width: 36px; height: 36px; border-radius: 10px; background: var(--red); animation: lgenBlock 1.1s var(--ease) infinite; }
+.lplan__ed { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 352px; }
+.lplan__stage { position: relative; min-height: 0; background: #e9e7e2; touch-action: none; user-select: none; -webkit-user-select: none; overflow: hidden; }
+.lplan__stage canvas { position: absolute; inset: 0; display: block; }
+.lplan__tools { position: absolute; right: 12px; top: 12px; display: grid; gap: 6px; }
+.lplan__tools button { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: rgba(255,255,255,.92); box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 8px 20px -10px rgba(0,0,0,.35); transition: background .2s, color .2s; }
+.lplan__tools button:hover { background: #111; color: #fff; }
+.lplan__tools svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.lplan__pop { position: absolute; z-index: 5; display: grid; gap: 2px; width: 220px; padding: 6px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 18px 40px -12px rgba(0,0,0,.45); }
+.lplan__pop[hidden] { display: none; }
+.lplan__pop button { padding: 10px 12px; border-radius: 9px; text-align: left; font-size: 13.5px; font-weight: 700; transition: background .15s, color .15s; }
+.lplan__pop button:hover { background: #111; color: #fff; }
+.lplan__side { display: flex; flex-direction: column; gap: 4px; min-height: 0; overflow-y: auto; padding: 14px 18px 0; border-left: 1px solid rgba(0,0,0,.08); }
+.lplan__pages { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; padding-bottom: 6px; font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #777; }
+.lplan__pages[hidden] { display: none; }
+.lplan__pages button { min-width: 30px; height: 30px; border-radius: 8px; background: #f3f2ef; font: 700 12px var(--sans); letter-spacing: 0; }
+.lplan__pages button[aria-pressed="true"] { background: #111; color: #fff; }
+.lplan__sec { padding: 12px 0 14px; border-bottom: 1px solid rgba(0,0,0,.07); }
+.lplan__sec h4 { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; font-size: 14.5px; font-weight: 800; }
+.lplan__sec h4 i { flex: none; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--red); color: #fff; font: 700 12px var(--sans); font-style: normal; }
+.lplan__sec p { color: #555; font-size: 13.5px; line-height: 1.5; }
+.lplan__sec p.is-todo { color: var(--red); font-weight: 600; }
+.lplan__small { margin-top: 6px; font-size: 12.5px !important; }
+.lplan__row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.lplan__b { padding: 9px 13px; border-radius: 10px; background: #f3f2ef; box-shadow: inset 0 0 0 1px rgba(0,0,0,.07); font-size: 13px; font-weight: 700; transition: background .2s, color .2s, opacity .2s, transform .2s var(--ease); }
+.lplan__b:hover:not(:disabled) { background: #111; color: #fff; }
+.lplan__b[aria-pressed="true"] { background: #111; color: #fff; }
+.lplan__b:disabled { opacity: .4; cursor: not-allowed; }
+.lplan__b--p { background: var(--red); color: #fff; box-shadow: none; padding: 12px 16px; font-size: 14px; }
+.lplan__b--p:hover:not(:disabled) { background: #8a1512; }
+.lplan__chk { display: flex; align-items: center; gap: 9px; margin-top: 10px; font-size: 13.5px; font-weight: 600; cursor: pointer; }
+.lplan__chk input { width: 18px; height: 18px; accent-color: var(--red); }
+.lplan__num { display: grid; gap: 6px; margin-top: 4px; font-size: 13px; font-weight: 600; color: #444; }
+.lplan__num[hidden] { display: none; }
+.lplan__in { display: flex; align-items: baseline; gap: 6px; padding: 8px 12px; border-radius: 12px; background: #f3f2ef; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+.lplan__in:focus-within { box-shadow: inset 0 0 0 2px var(--red); background: #fff; }
+.lplan__in input { flex: 1; min-width: 0; padding: 0; border: 0; background: transparent; outline: none; font: 800 1.7rem/1.2 var(--sans); color: #111; font-variant-numeric: tabular-nums; }
+.lplan__in input::placeholder { color: #aaa; font-weight: 600; }
+.lplan__in em { font-style: normal; font-weight: 800; color: var(--red); }
+.lplan select { padding: 10px 12px; border-radius: 12px; border: 0; background: #f3f2ef; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); font: 600 14px var(--sans); }
+.lplan__read { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 14px 0 6px; }
+.lplan__read > div { display: grid; }
+.lplan__read span { font: 500 10px var(--mono); letter-spacing: .13em; text-transform: uppercase; color: #888; }
+.lplan__read b { font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.lplan__warn { flex: 1 0 100%; padding: 9px 12px; border-radius: 10px; background: #fff3e0; color: #7a4400; font-size: 13px; font-weight: 600; line-height: 1.45; }
+.lplan__f { position: sticky; bottom: 0; margin: auto -18px 0; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; padding: 12px 18px 16px; background: linear-gradient(to top, #fff 70%, rgba(255,255,255,0)); }
+@media (max-width: 900px) {
+  .lplan { padding: 0; }
+  .lplan__box { height: 100dvh; border-radius: 0; }
+  .lplan__ed { grid-template-columns: 1fr; grid-template-rows: minmax(260px, 46dvh) minmax(0, 1fr); }
+  .lplan__side { border-left: 0; border-top: 1px solid rgba(0,0,0,.08); padding: 10px 14px 0; }
+  .lplan__f { margin: auto -14px 0; padding: 10px 14px calc(14px + env(safe-area-inset-bottom)); }
+  .lplan__f .lplan__b { flex: 1; }
+  .lplan__h { padding: 10px 10px 10px 18px; }
+}
 html.lgen-lock { overflow: hidden; }
 .lgen--full .lgen__frame { position: fixed; z-index: 400; inset: 0; width: 100%; padding: 12px; background: var(--paper); display: flex; flex-direction: column; }
 .lgen--full .lgen__stage { flex: 1; height: auto; border-radius: 18px; }
