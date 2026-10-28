@@ -637,3 +637,107 @@ main, .ftr, .cblock { overflow-x: clip; }
   .hdr__burger { display: block; margin-left: 6px; }
   .hdr__show { margin-left: auto; }
 }
+
+/* ---------- 3D Laden Baukasten (Ladenbau, Quellcode in ladenbau3d/) ---------- */
+.lgen { position: relative; background: var(--paper); color: var(--ink); padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 7vw, 100px); }
+.lgen .kicker, .lgen .h2 em { color: var(--red); }
+.lgen .lead { color: #4a4a4a; }
+.lgen__head .sh { margin-bottom: clamp(26px, 3.4vw, 44px); }
+.lgen__k { font-family: var(--mono); font-size: .9em; padding: 1px 6px; border-radius: 5px; background: rgba(0,0,0,.07); }
+.lgen__frame { position: relative; width: min(calc(100% - 2 * var(--pad)), 1640px); margin: 0 auto; }
+.lgen__stage { position: relative; height: clamp(540px, 76vh, 900px); border-radius: 24px; overflow: hidden; isolation: isolate; user-select: none; -webkit-user-select: none;
+  background: radial-gradient(120% 95% at 50% 40%, #fdfcfa 0%, #f2f0eb 52%, #e4e1d9 100%); box-shadow: inset 0 0 0 1px rgba(0,0,0,.05), 0 30px 80px -40px rgba(60,40,20,.25); }
+.lgen__cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; opacity: 0; transition: opacity .6s ease; }
+.lgen.is-ready .lgen__cv { opacity: 1; }
+.lgen__load { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: rgba(0,0,0,.42); transition: opacity .4s; pointer-events: none; }
+.lgen__load i { width: 34px; height: 34px; border-radius: 9px; background: #fff; box-shadow: 0 8px 22px rgba(0,0,0,.08); animation: lgenBlock 1.1s var(--ease) infinite; }
+@keyframes lgenBlock { 0% { transform: translateY(-26px) scale(.7); opacity: 0; } 55% { transform: translateY(0) scaleY(.82) scaleX(1.08); opacity: 1; } 75% { transform: translateY(0) scale(1); } 100% { transform: translateY(0); opacity: 0; } }
+.lgen.is-ready .lgen__load, .lgen--nogl .lgen__load { opacity: 0; }
+.lgen__nogl { display: none; position: absolute; inset: 0; place-content: center; text-align: center; padding: 24px; color: #555; font-size: 17px; }
+.lgen--nogl .lgen__nogl { display: grid; }
+.lgen--nogl .lgen__areas, .lgen--nogl .lgen__tools, .lgen--nogl .lgen__bar, .lgen--nogl .lgen__hint { display: none; }
+.lgen__areas, .lgen__bar, .lgen__tools button { background: rgba(255,255,255,.74); -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 0 0 1px rgba(0,0,0,.06), 0 12px 34px -14px rgba(40,30,20,.28); }
+.lgen__areas { position: absolute; z-index: 3; left: 18px; top: 18px; display: flex; gap: 4px; padding: 5px; border-radius: 15px; }
+.lgen__areas button { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 8px 14px 8px 12px; border-radius: 11px; color: #111; transition: background .25s, color .25s, transform .25s var(--ease); }
+.lgen__areas b { font-size: 12.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.lgen__areas span { font-family: var(--mono); font-size: 11px; color: #777; }
+.lgen__areas button:hover { background: rgba(255,255,255,.9); }
+.lgen__areas button[aria-pressed="true"] { background: #111; color: #fff; }
+.lgen__areas button[aria-pressed="true"] span { color: rgba(255,255,255,.65); }
+.lgen__stats { position: absolute; z-index: 3; right: 18px; top: 18px; display: flex; gap: 2px; padding: 6px; border-radius: 15px; background: rgba(17,17,17,.9); color: #fff; box-shadow: 0 14px 36px -16px rgba(0,0,0,.5); }
+.lgen__stats:empty { display: none; }
+.lgen__stat { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 3px; padding: 6px 14px 7px; border-right: 1px solid rgba(255,255,255,.1); }
+.lgen__stat:last-child { border-right: 0; }
+.lgen__stat span { flex: 1 0 100%; font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); white-space: nowrap; }
+.lgen__stat b { font-size: 22px; font-weight: 800; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.lgen__stat i { font-style: normal; font-size: 12px; color: rgba(255,255,255,.6); }
+.lgen__stat:first-child b { color: var(--red-l); }
+.lgen__tools { position: absolute; z-index: 3; right: 18px; bottom: 128px; display: flex; flex-direction: column; gap: 7px; }
+.lgen__tools button { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; color: #111; transition: background .25s, color .25s, transform .25s var(--ease); }
+.lgen__tools button:hover { transform: translateX(-3px); background: #fff; }
+.lgen__tools button[aria-pressed="true"] { background: var(--red); color: #fff; }
+.lgen__tools svg, .lgen__bar svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.lgen__tools .i-3d, .lgen.is-plan .lgen__tools .i-plan { display: none; }
+.lgen.is-plan .lgen__tools .i-3d { display: inline; }
+.lgen__tools [data-act="sound"] .i-off, .lgen__tools [data-act="sound"][aria-pressed="false"] .i-on { display: none; }
+.lgen__tools [data-act="sound"][aria-pressed="false"] .i-off { display: inline; }
+.lgen__tools [data-act="sound"][aria-pressed="true"] { background: rgba(255,255,255,.74); color: #111; }
+.lgen__bar { position: absolute; z-index: 3; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; gap: 5px; padding: 7px; border-radius: 20px; max-width: calc(100% - 36px); }
+.lgen__bar button { position: relative; width: 88px; height: 76px; flex: 0 0 auto; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; color: #111; transition: background .25s, color .25s, transform .35s var(--ease), box-shadow .25s; }
+.lgen__bar svg { width: 27px; height: 27px; stroke-width: 1.6; }
+.lgen__bar span { font-size: 11.5px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+.lgen__bar kbd { position: absolute; left: 8px; top: 6px; font-family: var(--mono); font-size: 9px; color: rgba(0,0,0,.35); }
+.lgen__bar button:hover { background: #fff; transform: translateY(-3px); }
+.lgen__bar button[aria-pressed="true"] { background: var(--red); color: #fff; transform: translateY(-5px); box-shadow: 0 14px 26px -12px rgba(169,27,24,.7); }
+.lgen__bar button[aria-pressed="true"] kbd { color: rgba(255,255,255,.6); }
+.lgen__hint { position: absolute; z-index: 2; left: 50%; bottom: 112px; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: rgba(0,0,0,.42); white-space: nowrap; pointer-events: none; transition: color .3s, transform .3s var(--ease); }
+.lgen__hint .lgen__k { background: rgba(0,0,0,.06); }
+.lgen__hm { display: none; }
+.lgen__head .lgen__hm { display: none; }
+.lgen.is-hint .lgen__hint { color: var(--red); transform: translateX(-50%) scale(1.06); }
+.lgen__dims span { position: absolute; z-index: 1; left: 0; top: 0; translate: -50% -50%; font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 7px; background: rgba(255,255,255,.88); color: #444; box-shadow: 0 0 0 1px rgba(0,0,0,.06); pointer-events: none; white-space: nowrap; transition: opacity .3s; }
+.lgen:not(.is-ready) .lgen__dims { display: none; }
+.lgen__tip { position: absolute; z-index: 6; left: 0; top: 0; padding: 7px 11px; border-radius: 9px; background: #111; color: #fff; font-size: 12.5px; font-weight: 600; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s; }
+.lgen__tip.is-on { opacity: 1; }
+.lgen__toast { position: absolute; z-index: 6; left: 50%; top: 84px; transform: translate(-50%, -8px); padding: 9px 16px; border-radius: 999px; background: #111; color: #fff; font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s, transform .35s var(--ease); }
+.lgen__toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+.lgen__foot { display: flex; align-items: center; justify-content: space-between; gap: 22px 36px; flex-wrap: wrap; margin-top: clamp(24px, 3vw, 38px); }
+.lgen__sum { color: #555; font-size: 15.5px; line-height: 1.55; max-width: 38rem; }
+.lgen__sum b { display: block; margin-bottom: 4px; color: #111; font-size: clamp(1.15rem, 1.7vw, 1.45rem); font-weight: 800; letter-spacing: .01em; text-transform: uppercase; }
+.lgen__btns { margin: 0; }
+html.lgen-lock { overflow: hidden; }
+.lgen--full .lgen__frame { position: fixed; z-index: 400; inset: 0; width: 100%; padding: 12px; background: var(--paper); display: flex; flex-direction: column; }
+.lgen--full .lgen__stage { flex: 1; height: auto; border-radius: 18px; }
+@media (max-width: 1100px) {
+  .lgen__bar button { width: 76px; height: 70px; }
+  .lgen__bar kbd { display: none; }
+}
+@media (max-width: 1023px) {
+  .lgen__stage { height: clamp(430px, 64svh, 700px); border-radius: 18px; }
+  .lgen__bar { position: relative; left: auto; bottom: auto; transform: none; max-width: none; margin-top: 10px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; border-radius: 16px; }
+  .lgen__bar::-webkit-scrollbar { display: none; }
+  .lgen__bar button { scroll-snap-align: start; width: 74px; height: 66px; }
+  .lgen__bar button[aria-pressed="true"] { transform: none; }
+  .lgen__tools { bottom: auto; top: 78px; right: 10px; gap: 6px; }
+  .lgen__tools button { width: 40px; height: 40px; border-radius: 11px; }
+  .lgen__hint { bottom: 12px; }
+  .lgen__hd, .lgen__head .lgen__hd { display: none; }
+  .lgen__hm, .lgen__head .lgen__hm { display: inline; }
+  .lgen--full .lgen__bar { margin-top: 8px; }
+}
+@media (max-width: 767px) {
+  .lgen__areas { left: 8px; right: 8px; top: 8px; overflow-x: auto; scrollbar-width: none; }
+  .lgen__areas::-webkit-scrollbar { display: none; }
+  .lgen__areas button { flex: 1 0 auto; padding: 7px 10px; }
+  .lgen__areas b { font-size: 11px; }
+  .lgen__areas span { font-size: 10px; }
+  .lgen__stats { left: 8px; right: auto; top: auto; bottom: 36px; padding: 4px; border-radius: 12px; }
+  .lgen__stat { padding: 4px 9px 5px; }
+  .lgen__stat b { font-size: 16px; }
+  .lgen__stat span { font-size: 8px; letter-spacing: .1em; }
+  .lgen__tools { top: 70px; right: 8px; }
+  .lgen__tools [data-act="reset"] { display: none; }
+  .lgen__toast { top: 70px; }
+  .lgen__sum { font-size: 14.5px; }
+  .lgen__btns .btn--line { flex: 1 1 auto; justify-content: center; }
+}
