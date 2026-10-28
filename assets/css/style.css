@@ -913,6 +913,27 @@ html.lplan-lock { overflow: hidden; }
   .lplan__f .lplan__b { flex: 1; }
   .lplan__h { padding: 10px 10px 10px 18px; }
 }
+
+/* Darstellung und Materialwahl (realistischer Modus) */
+.lgen__looks { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin: -4px -2px 16px; border-radius: 15px; background: #f3f2ef; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+.lgen__looks button { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 10px 6px; border-radius: 11px; font-size: 13px; font-weight: 800; letter-spacing: .01em; color: #111; transition: background .3s, color .3s, box-shadow .3s; }
+.lgen__looks button:not([aria-pressed="true"]):hover { background: #e9e7e2; }
+.lgen__looks button[aria-pressed="true"] { background: #111; color: #fff; box-shadow: 0 8px 18px -10px rgba(0,0,0,.6); }
+.lgen__lk { width: 18px; height: 18px; border-radius: 5px; flex: none; box-shadow: inset 0 0 0 1.5px currentColor; }
+.lgen__lk--c { background: linear-gradient(135deg, #fff 55%, var(--red) 55%); }
+.lgen__lk--r { background: linear-gradient(135deg, #c9a46b, #7a5233 60%, #d8d5ce 60%); }
+.lgen.is-loading-look .lgen__looks { opacity: .6; pointer-events: none; }
+.lgen.is-loading-look .lgen__looks button[aria-pressed="false"] i { animation: lgenBlock 1s var(--ease) infinite; }
+.lgen__mats { display: none; margin-top: 4px; }
+.lgen.is-real .lgen__mats { display: block; }
+.lgen__mat .lgen__cap { display: flex; justify-content: space-between; gap: 8px; margin: 16px 0 8px; }
+.lgen__mat .lgen__cap b { font-weight: 600; letter-spacing: .02em; text-transform: none; font-family: var(--sans); font-size: 12px; color: #111; }
+.lgen__sw { display: flex; flex-wrap: wrap; gap: 6px; }
+.lgen__sw button { width: 34px; height: 34px; border-radius: 10px; background-size: cover; background-position: center; box-shadow: inset 0 0 0 1px rgba(0,0,0,.18); transition: transform .25s var(--ease), box-shadow .2s; }
+.lgen__sw button:hover { transform: translateY(-2px) scale(1.06); }
+.lgen__sw button[aria-checked="true"] { box-shadow: 0 0 0 2.5px #fff, 0 0 0 5px var(--red); transform: scale(1.04); }
+.lgen__sw button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+@media (min-width: 1100px) { .lgen__size { max-height: calc(100vh - 112px); overflow-y: auto; scrollbar-width: thin; } }
 html.lgen-lock { overflow: hidden; }
 .lgen--full .lgen__frame { position: fixed; z-index: 400; inset: 0; width: 100%; padding: 12px; background: var(--paper); display: flex; flex-direction: column; }
 .lgen--full .lgen__stage { flex: 1; height: auto; border-radius: 18px; }

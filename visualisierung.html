@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/img/vis/maxim-potsdamer-platz-1.jpg">
 <link rel="icon" href="assets/logo/favicon.png">
 <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=1793217754">
+<link rel="stylesheet" href="assets/css/style.css?v=1793219280">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-visualisierung">
@@ -71,6 +71,10 @@
   </div>
   <div class="lgen__frame">
     <aside class="lgen__size" data-size aria-label="Fläche einstellen">
+      <div class="lgen__looks" role="group" aria-label="Darstellung" data-looks>
+        <button type="button" data-look="concept" aria-pressed="true"><i class="lgen__lk lgen__lk--c"></i><span>Konzept</span></button>
+        <button type="button" data-look="real" aria-pressed="false"><i class="lgen__lk lgen__lk--r"></i><span>Realistisch</span></button>
+      </div>
       <div class="lgen__size-h">
         <p class="lgen__cap">Ihre Fläche</p>
         <label class="lgen__big"><input type="number" inputmode="numeric" min="30" max="260" step="1" value="76" data-size-num aria-label="Fläche in Quadratmetern"><span>m²</span></label>
@@ -88,6 +92,7 @@
         <button type="button" class="lgen__up" data-plan-open><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M4 14.5V19a1 1 0 001 1h14a1 1 0 001-1v-4.5"/></svg><span><b>Eigenen Grundriss laden</b><i>PDF, JPG oder PNG. Die Datei bleibt in Ihrem Browser.</i></span></button>
         <div class="lgen__chip" data-plan-chip hidden><span class="lgen__chip-t"><b>Ihr Plan</b><i data-plan-sum></i></span><button type="button" data-plan-edit>Ändern</button><button type="button" data-plan-del aria-label="Plan entfernen" title="Plan entfernen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       </div>
+      <div class="lgen__mats" data-mats></div>
       <button type="button" class="lgen__more" data-size-toggle aria-expanded="false" aria-controls="lgen-size-body"><span>Mehr einstellen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="lgen__size-b" id="lgen-size-body">
         <p class="lgen__cap">Zuschnitt</p>
@@ -319,8 +324,8 @@
 <script src="assets/libs/gsap.min.js"></script>
 <script src="assets/libs/ScrollTrigger.min.js"></script>
 <script src="assets/libs/SplitText.min.js"></script>
-<script src="assets/js/lgen.js?v=1793217754"></script>
-<script src="assets/js/main.js?v=1793217754"></script>
-<script src="assets/js/showroom.js?v=1793217754"></script>
+<script src="assets/js/lgen.js?v=1793219280"></script>
+<script src="assets/js/main.js?v=1793219280"></script>
+<script src="assets/js/showroom.js?v=1793219280"></script>
 </body>
 </html>
