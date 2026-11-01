@@ -625,6 +625,25 @@ main, .ftr, .cblock { overflow-x: clip; }
 .shw__t:hover .shw__cap, .shw__t:focus-visible .shw__cap { opacity: 1; transform: none; }
 .shw__soon { position: absolute; top: 10px; left: 10px; z-index: 2; padding: 5px 9px; border-radius: 999px; background: var(--red); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
 @media (hover: none) { .shw__cap { opacity: 1; transform: none; } .shw__t::after { opacity: .85; } }
+/* Showroom als Abschnitt auf der Visualisierungs Seite (direkt unter dem Baukasten) */
+.shwi { position: relative; background: #000; padding: clamp(80px, 10vw, 140px) 0 clamp(64px, 8vw, 112px); }
+.shwi__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; margin-bottom: clamp(28px, 3.4vw, 48px); }
+.shwi__head .sh { margin-bottom: 0; }
+.shwi__full { flex: none; }
+.shw__grid.shwi__grid { padding-bottom: 0; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 15vw, 250px); }
+.shwi__grid .shw__t--r { grid-column: 3 / span 2; }
+@media (max-width: 899px) {
+  .shw__grid.shwi__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(110px, 28vw, 230px); }
+  .shwi__grid .shw__t--r { grid-column: span 2; }
+}
+.js .shwi__grid .shw__t.is-hidden { display: none; }
+.shwi__foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: clamp(28px, 3.4vw, 48px); }
+.shwi__foot [data-shwi-left] { opacity: .72; font-weight: 500; letter-spacing: .06em; }
+.shwi__foot.is-done [data-shwi-more] { display: none; }
+@media (max-width: 767px) {
+  .shwi__full { display: none; }
+  .shwi__foot .btn { width: 100%; justify-content: center; }
+}
 @media (max-width: 1023px) {
   .hdr__show { margin-left: auto; height: 38px; padding: 0 14px 0 12px; }
   .hdr__burger { margin-left: 6px; }
