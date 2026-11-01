@@ -402,7 +402,7 @@ main { padding-top: var(--hdr); }
 .svc-note { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px 26px; align-items: center; font-size: 15px; color: #4d4d4d; }
 .svc-note b { color: #111; }
 
-.packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 26px); align-items: stretch; }
+.packs { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(16px, 2vw, 26px); align-items: stretch; }
 .pack { position: relative; border: 1px solid var(--line); padding: clamp(28px, 3vw, 42px); display: flex; flex-direction: column; transition: border-color .4s, transform .5s var(--ease); }
 .pack:hover { border-color: rgba(255,255,255,.4); transform: translateY(-4px); }
 .pack.is-top { background: #fff; color: #111; border-color: #fff; }

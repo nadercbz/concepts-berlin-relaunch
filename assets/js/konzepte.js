@@ -1,15 +1,13 @@
-/* Konzepte: drei Pakete. Anfrage per E-Mail an Concepts Media, keine Preise. */
+/* Konzepte: zwei Pakete, nur Leistungen aus dem Angebot von Concepts Media (Stand 01.11.2026). Anfrage per E-Mail, keine Preise. */
 (function () {
   'use strict';
   var LABEL = {
-    logo: 'Logo und Bildmarke', farben: 'Farben und Schrift', brandbook: 'Brandbook', website: 'Website', social: 'Social Media',
-    karte: 'Speisekarte und Rezepturen', fotos: 'Produktfotos', visual: '3D Visualisierung', ladenbau: 'Ladenbau Plan', werbeanlage: 'Werbeanlage und Schild', imagefilm: 'Imagefilm',
-    verpackung: 'Verpackung und Becher', menuboard: 'Menüboard', ablauf: 'Abläufe Küche und Service', onboarding: 'Onboarding Video', businessplan: 'Businessplan', launch: 'Eröffnungsplan'
+    logo: 'Logo', brandbook: 'Brandbook', praesentation: 'Präsentation', menuboard: 'Menüboard', visual: 'Visualisierung in 3D', ladenzeichnung: 'Ladenzeichnung', fotos: 'Produktfotos',
+    imagefilm: 'Imagefilm', website: 'Website', druck: 'Druckdateien', erklaer: 'Erklärvideo mit Interview'
   };
   var PACKS = [
-    { id: 'marke', title: 'Marke', sub: 'Für den sichtbaren Start.', items: ['logo', 'farben', 'brandbook', 'website', 'social'] },
-    { id: 'laden', title: 'Marke und Store', sub: 'Für die Eröffnung Ihres Ladens.', top: true, plus: 'Alles aus Marke', items: ['karte', 'fotos', 'visual', 'ladenbau', 'werbeanlage', 'imagefilm'] },
-    { id: 'komplett', title: 'Komplett', sub: 'Fertig zum Eröffnen und Wachsen.', plus: 'Alles aus Marke und Store', items: ['verpackung', 'menuboard', 'ablauf', 'onboarding', 'businessplan', 'launch'] }
+    { id: 'marke-store', title: 'Marke und Store', sub: 'Ihr Auftritt und Ihr Laden, geplant und sichtbar.', items: ['logo', 'brandbook', 'praesentation', 'menuboard', 'visual', 'ladenzeichnung', 'fotos'] },
+    { id: 'komplett', title: 'Komplett', sub: 'Dazu Film, Website und alles für den Druck.', top: true, plus: 'Alles aus Paket 01', items: ['imagefilm', 'website', 'druck', 'erklaer'] }
   ];
   var MAIL = 'info@conceptsmedia.de';
   function packItems(id) { var out = []; for (var i = 0; i < PACKS.length; i++) { out = out.concat(PACKS[i].items); if (PACKS[i].id === id) break; } return out; }
