@@ -280,6 +280,10 @@ main { padding-top: var(--hdr); }
   background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.45) 55%, rgba(0,0,0,0) 100%); }
 .cards--bleed .card__body h3 { color: #fff; font-size: clamp(1.1rem, 1.6vw, 1.55rem); }
 .cards--bleed .card__body p { color: rgba(255,255,255,.78); max-width: 46rem; }
+.cards--bleed .card__ort { display: block; margin-top: 4px; font-size: .62em; font-weight: 500; letter-spacing: .02em; color: rgba(255,255,255,.82); }
+/* Referenzen: große Fotos von Rand zu Rand, 4:3 wie die Originalfotos */
+.cards--ref .card__media { aspect-ratio: 4 / 3; }
+.phero__title .word { white-space: nowrap; }
 .cards--bleed .slider__dots { left: auto; right: clamp(18px, 2.4vw, 40px); bottom: clamp(26px, 2.8vw, 44px); justify-content: flex-end; }
 
 /* Lightbox */

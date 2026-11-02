@@ -192,7 +192,7 @@
     var t = ph.querySelector('.phero__title'), bg = ph.querySelector('.phero__bg');
     G.fromTo(bg, { scale: 1.22 }, { scale: 1, duration: 2.2, ease: 'expo.out' });
     if (window.SplitText) {
-      var sp = new window.SplitText(t, { type: 'chars', mask: 'chars' });
+      var sp = new window.SplitText(t, { type: 'words,chars', wordsClass: 'word', mask: 'chars' });
       G.from(sp.chars, { yPercent: 115, duration: 1.1, ease: 'expo.out', stagger: .028, delay: .35 });
     }
     G.from(ph.querySelector('.phero__sub'), { opacity: 0, letterSpacing: '1em', duration: 1.4, ease: 'expo.out', delay: .6 });
