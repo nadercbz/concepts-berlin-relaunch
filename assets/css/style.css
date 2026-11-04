@@ -1126,3 +1126,6 @@ html.lgen-lock { overflow: hidden; }
   .cs__lab span { font-size: 15px; }
   .cs__more .cs__lab { left: 20px; top: 0; bottom: auto; }
 }
+
+/* Handy: Die Seite darf hinter dem Coming Soon Overlay auch ohne Blur nicht durchscheinen (iPhone WebKit, 04.11.2026) */
+@media (max-width: 767px) { .cs__bg { background-color: rgba(6,6,6,.93); } }
