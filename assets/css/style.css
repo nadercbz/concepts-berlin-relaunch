@@ -596,7 +596,7 @@ main { padding-top: var(--hdr); }
 main, .ftr, .cblock { overflow-x: clip; }
 
 /* ---------- Showroom: Knopf in der Kopfzeile ---------- */
-.hdr__show { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; height: 40px; padding: 0 17px 0 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,.24); background: rgba(255,255,255,.05); color: #fff; font: 700 12px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: background .4s var(--ease), border-color .4s, color .4s; }
+.hdr__show { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; height: 40px; padding: 0 17px 0 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,.24); background: rgba(255,255,255,.05); color: #fff; font: 700 12px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .4s var(--ease), border-color .4s, color .4s; }
 .hdr__show:hover, .hdr__show:focus-visible, .hdr__show[aria-expanded="true"] { background: #fff; border-color: #fff; color: #0a0a0a; }
 .hdr__show-ic { display: grid; grid-template-columns: 6px 6px; gap: 3px; transition: transform .6s var(--ease); }
 .hdr__show-ic i { width: 6px; height: 6px; border-radius: 1.5px; background: currentColor; transition: border-radius .6s var(--ease), transform .6s var(--ease); }
@@ -1129,3 +1129,13 @@ html.lgen-lock { overflow: hidden; }
 
 /* Handy: Die Seite darf hinter dem Coming Soon Overlay auch ohne Blur nicht durchscheinen (iPhone WebKit, 04.11.2026) */
 @media (max-width: 767px) { .cs__bg { background-color: rgba(6,6,6,.93); } }
+
+/* Neuer Showroom als Overlay (Knopf Showroom in der Kopfzeile, Inhalt aus showroom/?embed=1) */
+.srx { position: fixed; inset: 0; z-index: 150; visibility: hidden; pointer-events: none; }
+.srx.is-open { visibility: visible; pointer-events: auto; }
+.srx__bg { position: absolute; inset: 0; background: rgba(6,6,6,.62); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); opacity: 0; transition: opacity .5s var(--ease); }
+.srx.is-open .srx__bg { opacity: 1; }
+.srx__box { position: absolute; inset: 0; opacity: 0; transform: translateY(24px) scale(.985); transition: opacity .5s var(--ease), transform .6s var(--ease); }
+.srx.is-open .srx__box { opacity: 1; transform: none; }
+.srx__frame { width: 100%; height: 100%; border: 0; display: block; background: transparent; color-scheme: dark; }
+@media (prefers-reduced-motion: reduce) { .srx__bg, .srx__box { transition: none; } }

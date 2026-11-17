@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Showroom von Concepts Media und Concepts Berlin: Websites, Logos, Menuboards, Produktfotos, Imagefilme, Visualisierungen und Social Media.">
+<title>Showroom · Concepts Berlin</title>
+<link rel="icon" href="../assets/logo/favicon.png">
+<style>
+@font-face { font-family: "Geist"; src: url("../assets/fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("../assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root {
+  --bg: #0a0a0a; --card: #141414; --card2: #1b1b1b; --line: rgba(255,255,255,.12); --text: #fff; --muted: rgba(255,255,255,.6);
+  --red: #a91b18; --red-l: #e4584f; --paper: #f3f2ef; --ease: cubic-bezier(.2,.7,.1,1);
+  --pad: clamp(16px, 4vw, 48px); --sans: "Geist", "Helvetica Neue", Arial, sans-serif; --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+button, input { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; padding: 0; }
+a { color: inherit; }
+img, video { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+::selection { background: var(--red); color: #fff; }
+
+/* ---------- Anmeldung ---------- */
+.gate { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 24px 16px; overflow: hidden; background: rgba(5,5,5,.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); animation: fadeIn .3s ease both; }
+.gate__x { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; background: #1b1b1b; font-size: 20px; line-height: 1; }
+.gate__x:hover { background: var(--red); }
+.fld input.code { font-family: var(--mono); font-size: 26px; letter-spacing: .5em; text-align: center; padding-left: calc(14px + .5em); }
+.top__home { display: contents; }
+.lock { display: inline-block; margin-left: 6px; font-size: 12px; opacity: .7; }
+.gate::before { content: ""; position: absolute; inset: -20%; background: radial-gradient(40% 40% at 70% 20%, rgba(169,27,24,.35), transparent 70%), radial-gradient(35% 35% at 20% 90%, rgba(169,27,24,.18), transparent 70%); filter: blur(10px); animation: glow 14s ease-in-out infinite alternate; }
+@keyframes glow { to { transform: translate3d(-4%, 3%, 0) scale(1.08); } }
+.gate__box { position: relative; width: 100%; max-width: 400px; background: rgba(20,20,20,.82); border: 1px solid var(--line); border-radius: 18px; padding: 34px 28px 28px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 30px 80px rgba(0,0,0,.5); animation: rise .7s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+.gate__logo { height: 30px; width: auto; margin-bottom: 26px; }
+.gate h1 { font-size: 26px; line-height: 1.15; font-weight: 700; letter-spacing: -.01em; margin: 0 0 6px; }
+.gate p { margin: 0 0 24px; color: var(--muted); font-size: 15px; }
+.fld { display: block; margin-bottom: 14px; }
+.fld span { display: block; font-size: 12px; font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+.fld input { width: 100%; height: 48px; border-radius: 10px; border: 1px solid var(--line); background: #0d0d0d; padding: 0 14px; font-size: 16px; outline: none; transition: border-color .2s; }
+.fld input:focus { border-color: var(--red-l); }
+.chk { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); margin: 4px 0 20px; cursor: pointer; user-select: none; }
+.chk input { width: 18px; height: 18px; accent-color: var(--red); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 22px; border-radius: 10px; background: var(--red); color: #fff; font-weight: 600; transition: background .2s, transform .2s; }
+.btn:hover { background: #c22420; }
+.btn:active { transform: scale(.98); }
+.btn--full { width: 100%; }
+.btn[disabled] { opacity: .6; cursor: wait; }
+.gate__err { min-height: 22px; margin-top: 12px; color: var(--red-l); font-size: 14px; text-align: center; }
+.shake { animation: shake .4s; }
+@keyframes shake { 20%, 60% { transform: translateX(-7px); } 40%, 80% { transform: translateX(7px); } }
+
+/* ---------- App ---------- */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(10,10,10,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.top__bar { max-width: 1440px; margin: 0 auto; padding: 0 var(--pad); height: 68px; display: flex; align-items: center; gap: 18px; }
+.top__logo { height: 24px; width: auto; }
+.top__tag { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; background: rgba(169,27,24,.18); color: var(--red-l); }
+.tabs { display: flex; gap: 4px; margin-left: auto; background: #151515; border: 1px solid var(--line); border-radius: 999px; padding: 4px; }
+.tab { height: 36px; padding: 0 18px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--muted); transition: color .2s, background .25s; }
+.tab.is-on { background: #fff; color: #0a0a0a; }
+.out { font-size: 14px; color: var(--muted); padding: 8px 4px; text-decoration: none; }
+.out:hover { color: #fff; }
+.main { max-width: 1440px; margin: 0 auto; padding: 0 var(--pad) 80px; }
+.hero { padding: clamp(36px, 7vw, 84px) 0 clamp(24px, 4vw, 44px); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--red-l); margin-bottom: 12px; }
+.hero h1 { font-size: clamp(36px, 7vw, 84px); line-height: .98; letter-spacing: -.03em; font-weight: 750; margin: 0; text-transform: uppercase; }
+.hero p { color: var(--muted); max-width: 620px; margin: 16px 0 0; font-size: clamp(15px, 1.4vw, 18px); }
+.view { animation: fadeIn .5s var(--ease) both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } }
+
+/* Preise */
+.prices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; min-width: 0; align-items: start; }
+.price { position: relative; display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 20px 14px 14px; overflow: hidden; transition: border-color .25s, transform .35s var(--ease), background .25s; opacity: 0; transform: translateY(14px); animation: workIn .6s var(--ease) forwards; }
+.price:hover { border-color: rgba(228,88,79,.55); background: var(--card2); }
+.price__img { width: 96px; height: 72px; border-radius: 10px; background: #222 center/cover no-repeat; transition: transform .5s var(--ease); }
+.price:hover .price__img { transform: scale(1.04); }
+.price__name { font-weight: 700; font-size: 18px; line-height: 1.2; }
+.price__text { color: var(--muted); font-size: 14px; margin-top: 3px; }
+.price__more { margin-top: 6px; font-size: 13px; color: var(--red-l); font-weight: 600; display: inline-flex; gap: 6px; align-items: center; }
+.price__more:hover { text-decoration: underline; }
+.price__val { font-family: var(--mono); font-size: clamp(19px, 2vw, 26px); font-weight: 600; white-space: nowrap; text-align: right; }
+.price__val small { display: block; font-size: 11px; color: var(--muted); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; }
+.price__val--ask { font-size: 16px; color: var(--red-l); }
+.pgroup { font-size: clamp(20px, 2.4vw, 28px); font-weight: 750; letter-spacing: -.01em; text-transform: uppercase; margin: 34px 0 14px; display: flex; align-items: center; gap: 14px; }
+.pgroup::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.pgroup:first-of-type { margin-top: 0; }
+.price__stufen { order: 5; grid-column: 2 / -1; list-style: none; margin: 4px 0 2px; padding: 0; border-top: 1px solid var(--line); }
+.price__stufen li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.price__stufen span { color: var(--muted); }
+.price__stufen b { font-family: var(--mono); font-weight: 600; white-space: nowrap; }
+.price__ek { display: block; margin-top: 4px; font-size: 13px; font-weight: 400; color: var(--muted); }
+.note { margin-top: 20px; color: var(--muted); font-size: 13px; }
+
+/* Showroom */
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 2px 0 20px; position: sticky; top: 68px; z-index: 10; background: linear-gradient(var(--bg) 78%, transparent); }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: 0 0 auto; height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: 14px; font-weight: 600; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+.chip b { font-family: var(--mono); font-weight: 500; font-size: 12px; opacity: .7; }
+.chip:hover { color: #fff; border-color: rgba(255,255,255,.35); }
+.chip.is-on { background: var(--red); border-color: var(--red); color: #fff; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.work { position: relative; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; background: var(--card); text-align: left; isolation: isolate; opacity: 0; transform: translateY(16px) scale(.98); animation: workIn .6s var(--ease) forwards; }
+@keyframes workIn { to { opacity: 1; transform: none; } }
+.work__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s, transform .8s var(--ease); }
+.work__img.is-in { opacity: 1; }
+.work--hell { background: var(--paper); }
+.work--hell .work__img { object-fit: contain; padding: 8%; }
+.work:hover .work__img { transform: scale(1.05); }
+.work--logo .work__img { object-fit: contain; height: calc(100% - 62px); }
+.work--logo::after { display: none; }
+.work--logo .work__tag, .work--logo .work__count.is-1 { display: none; }
+.work--logo .work__meta { left: 0; right: 0; bottom: 0; height: 62px; padding: 10px 16px; background: #141414; }
+.work--logo .work__kunde { font-size: 16px; }
+.work--logo .work__titel { font-size: 13px; }
+.work--logo:hover .work__img { transform: scale(1.03); }
+.work::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(0,0,0,.82)); z-index: 1; }
+.work__meta { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2; }
+.work__kunde { font-weight: 700; font-size: 19px; line-height: 1.2; }
+.work__titel { font-size: 14px; color: rgba(255,255,255,.75); }
+.work__tag { position: absolute; top: 12px; left: 12px; z-index: 2; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; background: rgba(10,10,10,.7); backdrop-filter: blur(8px); padding: 5px 9px; border-radius: 6px; }
+.work__count { position: absolute; top: 12px; right: 12px; z-index: 2; font-family: var(--mono); font-size: 11px; background: rgba(10,10,10,.7); backdrop-filter: blur(8px); padding: 5px 9px; border-radius: 6px; display: flex; gap: 6px; align-items: center; }
+.play { position: absolute; z-index: 2; left: 50%; top: 50%; width: 62px; height: 62px; margin: -31px 0 0 -31px; border-radius: 50%; background: rgba(169,27,24,.92); display: grid; place-items: center; transition: transform .3s var(--ease); box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+.play::before { content: ""; border-left: 18px solid #fff; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+.work:hover .play { transform: scale(1.1); }
+.skel { position: absolute; inset: 0; background: linear-gradient(100deg, #151515 30%, #1e1e1e 50%, #151515 70%); background-size: 300% 100%; animation: skel 1.4s linear infinite; }
+@keyframes skel { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 50; background: rgba(5,5,5,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: grid; grid-template-rows: auto 1fr auto; animation: fadeIn .3s ease both; }
+.lb__top { display: flex; align-items: center; gap: 14px; padding: 14px var(--pad); }
+.lb__title { font-weight: 700; font-size: 17px; line-height: 1.2; min-width: 0; }
+.lb__title span { display: block; color: var(--muted); font-weight: 400; font-size: 14px; }
+.lb__link { margin-left: auto; height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.lb__link:hover { border-color: #fff; }
+.lb__x { width: 40px; height: 40px; border-radius: 50%; background: #1b1b1b; font-size: 22px; line-height: 1; flex: 0 0 auto; }
+.lb__x:hover { background: var(--red); }
+.lb__stage { position: relative; display: grid; place-items: center; min-height: 0; padding: 0 var(--pad); }
+.lb__stage img, .lb__stage video { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 10px; animation: fadeIn .35s ease both; }
+.lb__stage.is-hell img { background: var(--paper); padding: 3%; }
+.lb__nav { position: absolute; top: 50%; width: 48px; height: 48px; margin-top: -24px; border-radius: 50%; background: rgba(30,30,30,.85); font-size: 22px; z-index: 2; }
+.lb__nav:hover { background: var(--red); }
+.lb__prev { left: 12px; } .lb__next { right: 12px; }
+.lb__load { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--muted); font-size: 14px; }
+.spin { width: 34px; height: 34px; border-radius: 50%; border: 3px solid rgba(255,255,255,.15); border-top-color: var(--red-l); animation: sp .8s linear infinite; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.lb__thumbs { display: flex; gap: 8px; overflow-x: auto; padding: 14px var(--pad) calc(14px + env(safe-area-inset-bottom)); scrollbar-width: none; justify-content: center; }
+.lb__thumbs::-webkit-scrollbar { display: none; }
+.lb__th { flex: 0 0 auto; width: 64px; height: 48px; border-radius: 6px; overflow: hidden; opacity: .45; border: 2px solid transparent; background: #1b1b1b; transition: opacity .2s; }
+.lb__th img { width: 100%; height: 100%; object-fit: cover; }
+.lb__th.is-on { opacity: 1; border-color: var(--red-l); }
+
+@media (max-width: 900px) {
+  .prices { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .top__bar { height: 60px; gap: 10px; }
+  .top__tag, .out__t { display: none; }
+  .top__logo { height: 20px; }
+  .tab { padding: 0 13px; font-size: 14px; height: 34px; }
+  .chips { top: 60px; }
+  .price { grid-template-columns: 64px 1fr; padding: 12px; gap: 12px; }
+  .price__img { width: 64px; height: 64px; }
+  .price__val { grid-column: 2; text-align: left; font-size: 20px; }
+  .price__val small { display: block; margin: 0 0 2px; }
+  .price__ek { display: block; margin: 2px 0 0; }
+  .price > div { min-width: 0; }
+  .price__val { white-space: normal; }
+  .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .work { border-radius: 12px; aspect-ratio: 3 / 4; }
+  .work__kunde { font-size: 15px; }
+  .work__titel { font-size: 12px; }
+  .work__meta { left: 10px; right: 10px; bottom: 10px; }
+  .work--logo { aspect-ratio: 4 / 5; }
+  .work--logo .work__img { height: calc(100% - 54px); }
+  .work--logo .work__meta { left: 0; right: 0; bottom: 0; height: 54px; padding: 8px 10px; }
+  .work--logo .work__kunde { font-size: 14px; } .work--logo .work__titel { font-size: 11px; }
+  .work__tag { display: none; }
+  .play { width: 48px; height: 48px; margin: -24px 0 0 -24px; }
+  .lb__nav { display: none; }
+  .lb__link { padding: 0 12px; font-size: 13px; }
+  .lb__link b { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+/* eingebettet als Overlay auf der Website: Hintergrund durchsichtig, die Website dahinter ist unscharf */
+.is-embed body { background: transparent; }
+.is-embed .top { background: rgba(10,10,10,.55); }
+.is-embed .chips { background: none; }
+.is-embed .out { width: 40px; height: 40px; border-radius: 50%; background: #1b1b1b; color: #fff; font-size: 22px; line-height: 1; padding: 0; display: grid; place-items: center; }
+.is-embed .out:hover { background: var(--red); }
+</style>
+<script>if (/[?&]embed=1/.test(location.search)) document.documentElement.classList.add("is-embed");</script>
+<link rel="canonical" href="https://www.conceptsberlin.de/showroom/index.html">
+<meta property="og:url" content="https://www.conceptsberlin.de/showroom/index.html">
+</head>
+<body>
+
+<div id="app">
+  <header class="top">
+    <div class="top__bar">
+      <a class="top__home" href="../index.html" aria-label="Zur Startseite von Concepts Berlin"><img class="top__logo" src="../assets/logo/cm-logo-white.png" alt="Concepts Media"></a>
+      <nav class="tabs" role="tablist">
+        <button class="tab" data-tab="showroom" role="tab">Showroom</button>
+        <button class="tab" data-tab="preise" role="tab">Preise<span class="lock" aria-hidden="true" id="lock">🔒</span></button>
+      </nav>
+      <a class="out" href="../index.html">← <span class="out__t">Zur Website</span></a>
+      <button class="out out--x" id="srxClose" type="button" aria-label="Showroom schließen" hidden>×</button>
+    </div>
+  </header>
+  <main class="main" id="main"></main>
+</div>
+
+<section class="gate" id="gate" hidden>
+  <form class="gate__box" id="login" autocomplete="off">
+    <button class="gate__x" type="button" id="gateX" aria-label="Schließen">×</button>
+    <img class="gate__logo" src="../assets/logo/cm-logo-white.png" alt="Concepts Media">
+    <h1>Preise ansehen</h1>
+    <p>Bitte geben Sie Ihren Code ein.</p>
+    <label class="fld"><span>Code</span><input class="code" id="p" name="code" type="password" inputmode="numeric" autocomplete="off" maxlength="12" required></label>
+    <label class="chk"><input type="checkbox" id="keep" checked> Auf diesem Gerät merken</label>
+    <button class="btn btn--full" id="go" type="submit">Preise anzeigen</button>
+    <div class="gate__err" id="err" role="alert"></div>
+  </form>
+</section>
+
+<script>
+(() => {
+  const SALZ = "GzALDYkQ+Vx0JAcVYlHr8g==", ITER = 250000, PAKET = "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";
+  const D = {"kategorien": [{"id": "website", "name": "Website"}, {"id": "logo", "name": "Logo"}, {"id": "praesentation", "name": "Präsentation"}, {"id": "menuboard", "name": "Menuboard"}, {"id": "produktfotos", "name": "Produktfotos"}, {"id": "imagefilm", "name": "Imagefilm"}, {"id": "visualisierung", "name": "Visualisierung"}, {"id": "social", "name": "Social Media"}], "arbeiten": [{"kat": "website", "kunde": "Açaí x You", "titel": "Website mit Bowl Lab", "link": "https://nadercbz.github.io/acai-x-you-website/", "hell": false, "logo": false, "medien": [{"t": "img", "w": 1440, "h": 900, "bg": "#3f0f56", "th": "3f5f798d90d6ed36740e", "f": "aa38cc38dae2498a43e3"}, {"t": "img", "w": 780, "h": 1688, "bg": "#5b257c", "th": "f5818a13492490affc75", "f": "3c9457441f90637ff01f"}]}, {"kat": "website", "kunde": "The Meat Company", "titel": "Website in 5 Sprachen", "link": "https://nadercbz.github.io/the-meat-company/", "hell": false, "logo": false, "medien": [{"t": "img", "w": 1440, "h": 900, "bg": "#11100f", "th": "d6a991f5b39f6e31fb85", "f": "e5bda37b21750d41108e"}, {"t": "img", "w": 780, "h": 1688, "bg": "#2c2620", "th": "472d61534e20b856571a", "f": "42e5070ccf00eb017f08"}]}, {"kat": "website", "kunde": "What about coffee?", "titel": "Website Café Zehlendorf", "link": "https://nadercbz.github.io/what-about-coffee/", "hell": false, "logo": false, "medien": [{"t": "img", "w": 1440, "h": 900, "bg": "#4e3523", "th": "7bc914e7bcaa0019757b", "f": "d5e5c6cca6e43f96da95"}, {"t": "img", "w": 780, "h": 1688, "bg": "#504e3c", "th": "fc001f9f9c2d182e3e88", "f": "2e54afa44276e35cc419"}]}, {"kat": "website", "kunde": "The 25 Hours Store", "titel": "Begehbare Website", "link": "https://nadercbz.github.io/the-25-hours-store/", "hell": false, "logo": false, "medien": [{"t": "img", "w": 1440, "h": 900, "bg": "#443f42", "th": "cc5904a807c8f5ed968c", "f": "731b0e25e4aa79e7b0f5"}, {"t": "img", "w": 780, "h": 1688, "bg": "#262426", "th": "6a40c132906efab8966f", "f": "b1a2ef0db4ed2a577b3c"}]}, {"kat": "website", "kunde": "ALX Group", "titel": "Unternehmensseite", "link": "https://nadercbz.github.io/alx-group/", "hell": false, "logo": false, "medien": [{"t": "img", "w": 1440, "h": 900, "bg": "#242323", "th": "c385aede9dc4893f3ffa", "f": "af272d5e62467887fb5e"}, {"t": "img", "w": 780, "h": 1688, "bg": "#efeae2", "th": "dd91211d070b90cde0ca", "f": "04da0b9ce41aa881dfbf"}]}, {"kat": "website", "kunde": "Concepts Berlin", "titel": "Unsere eigene Website", "link": "https://www.conceptsberlin.com/", "hell": false, "logo": false, "medien": [{"t": "img", "w": 1440, "h": 900, "bg": "#000000", "th": "06989920fef0c37fb8cf", "f": "07fc42cf348a85595ad3"}, {"t": "img", "w": 780, "h": 1688, "bg": "#000000", "th": "8ed1cb71a97de4d72a0f", "f": "bdccb619b0dc0d7d63d7"}]}, {"kat": "website", "kunde": "The Pizzary", "titel": "Gäste Website mit Pizza Baukasten", "link": "https://nadercbz.github.io/the-pizzary-konzept/", "hell": false, "logo": false, "medien": [{"t": "img", "w": 1440, "h": 900, "bg": "#6d86dd", "th": "6b3f03447ea4c1ef99d8", "f": "6fd044319dfa4700e7ff"}, {"t": "img", "w": 780, "h": 1688, "bg": "#6e86dc", "th": "4d2ef60115842541f5b2", "f": "00d2f4df1ab5107ce402"}]}, {"kat": "logo", "kunde": "Açaí x You", "titel": "Hauptlogo, sauber als Vektor", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 3900, "h": 3900, "bg": "#f3f2ee", "th": "c15c646089258f0c194b", "f": "dd784618aefb7bddc831"}, {"t": "img", "w": 3900, "h": 3900, "bg": "#1a141e", "th": "58ddda3d37e288eb5f78", "f": "72d158f31cb29237d220"}]}, {"kat": "logo", "kunde": "What about coffee?", "titel": "Logo und Varianten", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 1080, "h": 1080, "bg": "#442715", "th": "ddba58dc2f6acad2f516", "f": "8522bd647d45e7a6158d"}, {"t": "img", "w": 3000, "h": 1197, "bg": "#442715", "th": "a01db705895d6d8f411c", "f": "480ea8cfaa84c2f7ff49"}, {"t": "img", "w": 3000, "h": 1068, "bg": "#f5dcc6", "th": "d6c0519dba0ebe5c403a", "f": "fd809f8749d46a72b2b1"}, {"t": "img", "w": 3000, "h": 1068, "bg": "#442715", "th": "0c3c90923ee5a6ef110f", "f": "a5103e8d292be28eb199"}]}, {"kat": "logo", "kunde": "KÖZ", "titel": "Logo Beispiel · Döner", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#f3f2ee", "th": "9fe7795e50d02b29b064", "f": "de9d1fe3c4b5923a7ca2"}]}, {"kat": "logo", "kunde": "SPIESS", "titel": "Logo Beispiel · Döner", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#faf4e8", "th": "e9d08938187fe389b788", "f": "28cb39eb64fe8082934a"}]}, {"kat": "logo", "kunde": "DÜRÜM DISTRICT", "titel": "Logo Beispiel · Döner", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#edf0e9", "th": "dc4a11542cdd6b60a783", "f": "5649819d71bd0b3a5fc3"}]}, {"kat": "logo", "kunde": "YAPRAK", "titel": "Logo Beispiel · Grill und Döner", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#2a0b2b", "th": "b270dac877346fa00c07", "f": "1029d67a17a06005b3b4"}]}, {"kat": "logo", "kunde": "PASTA LUCE", "titel": "Logo Beispiel · Pasta", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#fff6e5", "th": "7861d17735a900a071de", "f": "e4901538f16ec6de73ff"}]}, {"kat": "logo", "kunde": "SMASH CLUB", "titel": "Logo Beispiel · Burger", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#ecebe7", "th": "eb5a284a005605a9f5f0", "f": "cab08dbe144eaa0159ff"}]}, {"kat": "logo", "kunde": "FORNO 58", "titel": "Logo Beispiel · Pizza", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#faf4e8", "th": "31dbc8aecf12caf8d3f4", "f": "4616ff8f5a4e39dd2199"}]}, {"kat": "logo", "kunde": "bowld", "titel": "Logo Beispiel · Bowls", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#dff3e8", "th": "e3f6ab6c8bbb13d3cbf8", "f": "7b0fab1d20018b45398a"}]}, {"kat": "logo", "kunde": "KORI", "titel": "Logo Beispiel · Korean Fried Chicken", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#ffffff", "th": "77f357c358d4837a9d71", "f": "7a98586d3e0680f29887"}]}, {"kat": "logo", "kunde": "ROAST & CO", "titel": "Logo Beispiel · Coffee", "link": null, "hell": false, "logo": true, "medien": [{"t": "img", "w": 2048, "h": 2048, "bg": "#e9dcc9", "th": "afa92da62eb46dd44f1d", "f": "eb2222ddeac55a374dd3"}]}, {"kat": "praesentation", "kunde": "The Pizzary", "titel": "Markenhandbuch und Mockups", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 1200, "bg": "#dad6c7", "th": "85416b385a0b2df36298", "f": "3c22e1afb5f34e7b2f45"}, {"t": "img", "w": 1600, "h": 1200, "bg": "#e6e2d6", "th": "bad10f07ccb5f1237ed5", "f": "4c8899ae0fca31c6d2bf"}, {"t": "img", "w": 1600, "h": 1200, "bg": "#f4f4ae", "th": "b7a5c6634011eb0e5c5f", "f": "2fda90e8bc850fb94ae7"}, {"t": "img", "w": 1600, "h": 1200, "bg": "#33322e", "th": "39ca0faf5270c1e79067", "f": "5f76a0a0d461c97e9165"}, {"t": "img", "w": 1600, "h": 1200, "bg": "#dad6ca", "th": "5a758054208d7610f1c7", "f": "111d6353d78e7de4f938"}, {"t": "img", "w": 1600, "h": 1200, "bg": "#393734", "th": "db9b1a6f3b1251ee12a4", "f": "74f01737ffe76320da4b"}, {"t": "img", "w": 468, "h": 331, "bg": "#f4f4ed", "th": "bf86ded6d342e3bc4e1d", "f": "67f0c48b150a368e26e9"}, {"t": "img", "w": 468, "h": 331, "bg": "#f4f4ed", "th": "157985f17ab955a7e244", "f": "3500a2af5da5d6048680"}]}, {"kat": "praesentation", "kunde": "The Pizzary", "titel": "Verpackung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1401, "h": 990, "bg": "#f4f4ed", "th": "0ffca74c2c1f2bce29a0", "f": "a6fef9dfb8e4b9c39cd7"}, {"t": "img", "w": 1401, "h": 992, "bg": "#f4f4ed", "th": "53b22c154f7f2ec28cdd", "f": "c32cca34a74a3011505c"}, {"t": "img", "w": 1401, "h": 992, "bg": "#f4f4ed", "th": "de0e9369aa254e84ff72", "f": "c0ccbf2548bd7535bfab"}, {"t": "img", "w": 1401, "h": 990, "bg": "#f4f4ed", "th": "31b2cc837e7053bd9ed9", "f": "839fdfbf1bbad1d7dbe6"}, {"t": "img", "w": 1401, "h": 992, "bg": "#f4f4ed", "th": "d1834ec0149d960b36af", "f": "f40811febeffcb28b218"}, {"t": "img", "w": 1401, "h": 992, "bg": "#f4f4ed", "th": "fe7f79bce364981c7fc5", "f": "a113be9eb7c04a242651"}, {"t": "img", "w": 1401, "h": 990, "bg": "#f4f4ed", "th": "5acdb31aaa966706a61a", "f": "ae241427063b846c0e52"}]}, {"kat": "menuboard", "kunde": "The Meat Company", "titel": "Menuboard, 4 Screens", "link": null, "hell": false, "logo": false, "medien": [{"t": "video", "w": 2160, "h": 3840, "dauer": 24, "th": "e27c18a666f2e709deb7", "f": "de41de951c972694f671", "v": "afdb03b364210a968061"}, {"t": "img", "w": 4350, "h": 1920, "bg": "#000000", "th": "0bf9ac9734125d9cb80f", "f": "0565940e142c20e09493"}]}, {"kat": "menuboard", "kunde": "Açaí x You", "titel": "Menuboard inkl. Produktfotos", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1686, "h": 1326, "bg": "#120018", "th": "36ce6e87f97b19cf415b", "f": "3d62a17985e6159c8cff"}, {"t": "img", "w": 2112, "h": 522, "bg": "#120018", "th": "37bca97ad3e86cca25ef", "f": "4e3019abcb63e4ca3b52"}, {"t": "img", "w": 1560, "h": 1692, "bg": "#120018", "th": "af1c2ce25de973de20ab", "f": "3a64cb8f2983e4635bbe"}]}, {"kat": "menuboard", "kunde": "The Meat Company", "titel": "Speisekarte in 5 Sprachen", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 3402, "h": 1200, "bg": "#2d2824", "th": "5ebb14f98d79b433716d", "f": "02ef88389d7d290da8cd"}]}, {"kat": "menuboard", "kunde": "The Pizzary", "titel": "TV Menuboard, 5 Screens", "link": null, "hell": false, "logo": false, "medien": [{"t": "video", "w": 1920, "h": 1080, "dauer": 12, "th": "6fbf38b8348c106c5e19", "f": "e7d2b7b80de7a96ddac8", "v": "dee601d8ba684fe5847f"}, {"t": "img", "w": 1080, "h": 1920, "bg": "#f4f4ed", "th": "e3862360b907c0924fc0", "f": "75b37d36f27422c6a23f"}, {"t": "img", "w": 1080, "h": 1920, "bg": "#7d82d9", "th": "f97b26bab456f798fb94", "f": "fc68c0b26ceb00dbc1a7"}]}, {"kat": "menuboard", "kunde": "The Pizzary", "titel": "Speisekarte, Flyer und Druck", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1634, "h": 2292, "bg": "#f4f4ed", "th": "48d1705699b398762918", "f": "2a033fbb47fd675312b3"}, {"t": "img", "w": 1634, "h": 2292, "bg": "#f4f4ed", "th": "ae73c12f004132de76c8", "f": "564d0d3b6f6e992f06f3"}, {"t": "img", "w": 794, "h": 1634, "bg": "#7d82d9", "th": "a83a747a0e4894300d95", "f": "ebf0c275d7f076187114"}, {"t": "img", "w": 794, "h": 1634, "bg": "#f4f4ed", "th": "2c4675b34d6f5fa71f36", "f": "1a792958e79384851b6c"}, {"t": "img", "w": 840, "h": 1166, "bg": "#f5f5af", "th": "5b281ba16ad88a460c5e", "f": "6aa7a21e32805218da23"}, {"t": "img", "w": 688, "h": 462, "bg": "#7d82d9", "th": "fe492a2b3858f230183e", "f": "7977f3950aa48b97eee9"}]}, {"kat": "produktfotos", "kunde": "The Pizzary", "titel": "Produktbilder freigestellt", "link": null, "hell": true, "logo": false, "medien": [{"t": "img", "w": 1712, "h": 6459, "bg": "#f4f4ed", "th": "70bcb5e3414effc04392", "f": "c72c4cf6f156dfc3d157"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "d06cf4d77e1e5d7b162b", "f": "464624f8e901c01bf156"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "925f2bc2ccad9ccb5003", "f": "51bce936897f0b577dcf"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "65ab0673a1ef083201d6", "f": "d0745707eee041187185"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "7e7019147a266f95f907", "f": "7f98b3c7a7df3f1bdd44"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "c15d18f45e6264aa537c", "f": "48d48f9a8481a9ce5e39"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "2b20dd5ecce7b036a0a7", "f": "2fc22c3411b0a716d144"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "e1a30b87649d71462827", "f": "cffa034a811b0a3a5e3f"}, {"t": "img", "w": 2000, "h": 2000, "bg": null, "th": "0c9f7afc53562c3ff8e4", "f": "25bb31df06faca89b844"}]}, {"kat": "produktfotos", "kunde": "The Meat Company", "titel": "Produktfotos freigestellt", "link": null, "hell": true, "logo": false, "medien": [{"t": "img", "w": 1090, "h": 843, "bg": null, "th": "cce7805974c51f09ce4d", "f": "00a2c1c72a08fea8e031"}, {"t": "img", "w": 1237, "h": 577, "bg": null, "th": "79a856920263e2310964", "f": "13c10abe4b91c2ab725c"}, {"t": "img", "w": 1072, "h": 881, "bg": null, "th": "ed1bc1a7a225647d8ebb", "f": "1d98f471ea39d4a5e129"}, {"t": "img", "w": 1287, "h": 818, "bg": null, "th": "55b08456affa17f93458", "f": "c78b0bef79d72f56976f"}, {"t": "img", "w": 1180, "h": 839, "bg": null, "th": "9d6e27b69e5d0517bf65", "f": "b6a403150c1c68d83363"}, {"t": "img", "w": 1225, "h": 802, "bg": null, "th": "47268271d19e9ee19993", "f": "bfe4af43c8058b2d7973"}, {"t": "img", "w": 899, "h": 891, "bg": null, "th": "82a1a1682f017c02da70", "f": "b0dbdb474be45428d0ee"}, {"t": "img", "w": 852, "h": 836, "bg": null, "th": "ac84944cee45e551f21f", "f": "b4385dca52be2413c0b9"}]}, {"kat": "produktfotos", "kunde": "Açaí x You", "titel": "Produktlinie fürs Menuboard", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1344, "h": 896, "bg": "#000105", "th": "9550cbdaeb0cfb26100f", "f": "70751f32a6d9cbcd8ff3"}, {"t": "img", "w": 1344, "h": 896, "bg": "#30172a", "th": "5b6a343dfe3b22ebb94b", "f": "82ec08d432b4f8c79c09"}, {"t": "img", "w": 1344, "h": 896, "bg": "#040f0f", "th": "f783eeee8f871856ea87", "f": "1bb3061499d83c99535f"}, {"t": "img", "w": 1344, "h": 896, "bg": "#03090d", "th": "fd7ff6d684904ed156fc", "f": "ebc66670e5ffb8074c68"}, {"t": "img", "w": 1344, "h": 896, "bg": "#000204", "th": "58518c5dcfc158a8c424", "f": "ad23c1dae4574868c435"}, {"t": "img", "w": 1344, "h": 896, "bg": "#662a02", "th": "a1dce60068fcccd46438", "f": "5b59c0f2a663b5ebafb1"}, {"t": "img", "w": 1344, "h": 896, "bg": "#071213", "th": "458b5f9fc24d50d6725d", "f": "a4a0dbd7163f08865888"}, {"t": "img", "w": 1344, "h": 896, "bg": "#3e1b3f", "th": "e6f15330eeac26691871", "f": "acf224bb42c5d2110eae"}]}, {"kat": "produktfotos", "kunde": "What about coffee?", "titel": "Produktbilder", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1344, "h": 896, "bg": "#c09c91", "th": "892f0343439792c194f1", "f": "a6e8b7e7771070412471"}, {"t": "img", "w": 1344, "h": 896, "bg": "#b7887d", "th": "ba2199f429517550ff7c", "f": "ae5576f76f4884720f7a"}, {"t": "img", "w": 1344, "h": 896, "bg": "#26303f", "th": "f6485895ae6334db2b74", "f": "f9936b7c13918eb2f820"}, {"t": "img", "w": 1344, "h": 896, "bg": "#030504", "th": "04080c422fc444e13b33", "f": "5075c5d1c285ac0ba381"}, {"t": "img", "w": 1344, "h": 896, "bg": "#0c0801", "th": "36c19535863bc994cd76", "f": "d129e0750c486993a207"}, {"t": "img", "w": 1344, "h": 896, "bg": "#000103", "th": "50be26895d8376237a06", "f": "6d785b894db0bdd35c41"}]}, {"kat": "imagefilm", "kunde": "Concepts Berlin", "titel": "Imagefilm", "link": null, "hell": false, "logo": false, "medien": [{"t": "video", "w": 2560, "h": 1440, "dauer": 73, "th": "6ce3e3fa08b9ce3aff89", "f": "3e90594a3faecf941357", "v": "0ed181affc4fdb3cecf8"}]}, {"kat": "imagefilm", "kunde": "The Meat Company", "titel": "Imagefilm", "link": null, "hell": false, "logo": false, "medien": [{"t": "video", "w": 1920, "h": 1080, "dauer": 56, "th": "666d618e5849a4a5c4be", "f": "62c8d4032770ad27183a", "v": "b493b9427a07a017ecd5"}]}, {"kat": "imagefilm", "kunde": "Açaí x You", "titel": "Referenzfilm", "link": null, "hell": false, "logo": false, "medien": [{"t": "video", "w": 1920, "h": 1080, "dauer": 78, "th": "3fe3bc38a7920cfd170b", "f": "2aac7a0a2ffed6162085", "v": "d1a4d3818a8d40e06c1a"}]}, {"kat": "imagefilm", "kunde": "The Pizzary", "titel": "Erklärvideo", "link": null, "hell": false, "logo": false, "medien": [{"t": "video", "w": 1920, "h": 1080, "dauer": 88, "th": "c3599b6739ff13b84cdb", "f": "1be1764f007e607a3372", "v": "fbcb4699091fdc40d122"}]}, {"kat": "visualisierung", "kunde": "The Pizzary", "titel": "Store Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1920, "h": 1085, "bg": "#6b4427", "th": "91c9c328f68bfb1556f2", "f": "baef7ce9aaacbb773f93"}, {"t": "img", "w": 1920, "h": 1085, "bg": "#f5f1ee", "th": "c0ff9dcc5a2f8b3d9c40", "f": "091156e2cfaddf385960"}, {"t": "img", "w": 1920, "h": 1085, "bg": "#9f9186", "th": "ddb1f6262afbe34dd054", "f": "bc2dcebc24aad04ccb1c"}, {"t": "img", "w": 1920, "h": 1085, "bg": "#b8956d", "th": "5278dfca27ff0eae6fca", "f": "c676065b5b6dd9cfa020"}, {"t": "img", "w": 1920, "h": 1085, "bg": "#6d513b", "th": "2ebfcba5185754167ba2", "f": "49ea7d0e1fb8c4a92617"}, {"t": "img", "w": 1920, "h": 1085, "bg": "#b98d68", "th": "44c11f539541bbd41b37", "f": "80eb9f4fa3d11e4b4b9b"}, {"t": "img", "w": 1800, "h": 1272, "bg": "#000000", "th": "72f1ad172ff18dcd8326", "f": "742bcf4c9d4eec2b8e3e"}]}, {"kat": "visualisierung", "kunde": "Concepts Berlin", "titel": "So entsteht eine Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "video", "w": 2560, "h": 1440, "dauer": 111, "th": "c0bf0fb1f1ec489cf1ee", "f": "89f713493c18f5bb602f", "v": "b71edf11703c3594bf04"}]}, {"kat": "visualisierung", "kunde": "Açaí x You", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 905, "bg": "#c9a78b", "th": "18a22c06eaeac938cc9c", "f": "b25d83210c8e0df45eb1"}, {"t": "img", "w": 1600, "h": 905, "bg": "#46334f", "th": "bbc92b7e84fd5cebfd32", "f": "b62d8a5606041c03cb7e"}, {"t": "img", "w": 1600, "h": 905, "bg": "#5e3d50", "th": "e090b990a437dd2d3ab0", "f": "3c96540ee89566a32ec4"}]}, {"kat": "visualisierung", "kunde": "The Meat Company", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#89827c", "th": "9e74b386ffacee1eab92", "f": "684cd2dccc6b0ba925dd"}, {"t": "img", "w": 1600, "h": 948, "bg": "#7e6d5d", "th": "895a7654d4ec64bf9b1d", "f": "7e9b14ddc66ad41a80e9"}, {"t": "img", "w": 1600, "h": 948, "bg": "#766f69", "th": "c91ed57d386918b48764", "f": "6c39dbbd08ff06eda0dd"}]}, {"kat": "visualisierung", "kunde": "The 25 Hours Store", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#1a1511", "th": "dae44795b0e70f048bd9", "f": "3f6745718bd190893787"}, {"t": "img", "w": 1600, "h": 948, "bg": "#2e2925", "th": "8f82377d564df02d7ba8", "f": "3ef84bf6e474f41f861a"}, {"t": "img", "w": 1600, "h": 948, "bg": "#6f6534", "th": "88b2e7aa852b71d1150e", "f": "b32849f6fbbd0bca3c04"}]}, {"kat": "visualisierung", "kunde": "Maxim Potsdamer Platz", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#586d8c", "th": "810b0185174945ccaa66", "f": "3b426baa58ae17f7713d"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#ffffff", "th": "c57be2d625bed9e1d87e", "f": "41018a2b6ad1bc86c53b"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#93d2fe", "th": "4ce89367f5bfd704e99f", "f": "0e57e20ff9df0a4f1e5e"}]}, {"kat": "visualisierung", "kunde": "Comebuy Potsdam", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#846d5f", "th": "309b609532e3f5564fe0", "f": "62eb3c0aaeb9fd105e81"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#bfc8cf", "th": "f56a63aeb5a141cf0f41", "f": "74e420b2d7674c3a8dc2"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#5a5d4a", "th": "5dd6883349a37e6273ef", "f": "a59087a268b741af19d3"}]}, {"kat": "visualisierung", "kunde": "Emxing Nails", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 905, "bg": "#adc3d1", "th": "07062841d4a9d040ce66", "f": "f7c601c99cc17d642a2e"}, {"t": "img", "w": 1600, "h": 905, "bg": "#8d7159", "th": "02f302e63a2c3e6efe9c", "f": "0666b1461ddcdf84747a"}, {"t": "img", "w": 1600, "h": 905, "bg": "#a7a6a4", "th": "df6fa3b26c03168d7cf9", "f": "8c7dcf91f84654178875"}]}, {"kat": "visualisierung", "kunde": "Mr. Tokio", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#b7a493", "th": "38d0d21ccaef279c9054", "f": "d1fa6f30726a8d4d3dd6"}, {"t": "img", "w": 1600, "h": 948, "bg": "#392816", "th": "a4083e05413549644f09", "f": "71f2555f6f798cfbbfd5"}, {"t": "img", "w": 1600, "h": 948, "bg": "#4b4539", "th": "3cbf18e744878acbcf00", "f": "4f8b465e6aea6a3964e0"}]}, {"kat": "visualisierung", "kunde": "Kaiser Café", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 1195, "bg": "#323232", "th": "bd3dd6bfde193c808e06", "f": "2fb21eb24ded2a0a68fc"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#8a8d7a", "th": "96094b4d749293a67f72", "f": "ebc682416cd5ae119e4a"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#e5e5dd", "th": "66fb176dcab189018f18", "f": "7573659abd9197f27fe8"}]}, {"kat": "visualisierung", "kunde": "Ma'Loa Karlsruhe", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#c8e8ff", "th": "347fb937cae388271bb9", "f": "a0f740506e292cbde20e"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#adb3c1", "th": "bb80f73b21ff7517cb0c", "f": "7a04a1fde05270a62a5d"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#b0b4c0", "th": "37b2ba0acb2e5d58d056", "f": "6be7f6da2fa43b7b7ed7"}]}, {"kat": "visualisierung", "kunde": "Borkowski Currywurst", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#17120c", "th": "3cb1bb2944db64ca74c3", "f": "45653a24b1bd908c095e"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#e5e5e5", "th": "737d7b5f163e641b3032", "f": "d0b8b1d53c3f52d433ac"}, {"t": "img", "w": 1600, "h": 1000, "bg": "#323232", "th": "963f4d6ffe2b1c7e0611", "f": "c80bb11b1f652b34e6ff"}]}, {"kat": "visualisierung", "kunde": "Biang Biang", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 948, "bg": "#796f77", "th": "1c8a3d4c64c4a0637f7c", "f": "b81df254877c1c6d4376"}, {"t": "img", "w": 1600, "h": 948, "bg": "#8c6a5e", "th": "73bc88b67b610209b933", "f": "8bb7e5d8e7cd3636e475"}, {"t": "img", "w": 1600, "h": 948, "bg": "#8f221f", "th": "b035dd00062f7eb4004c", "f": "c46883c3f145ed6e6e5d"}]}, {"kat": "visualisierung", "kunde": "Alfredo's", "titel": "Visualisierung", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1600, "h": 1195, "bg": "#bcc0c1", "th": "4b41350a6dde29b0c948", "f": "9d5409568a2161ef2fdf"}, {"t": "img", "w": 1600, "h": 948, "bg": "#615144", "th": "572f6fc563dcff2a82db", "f": "c2d9d6547246a31ab2a8"}, {"t": "img", "w": 1600, "h": 948, "bg": "#382a1d", "th": "8afa588fdfe20e53008e", "f": "192bb50bf55ca21776b0"}]}, {"kat": "social", "kunde": "The Pizzary", "titel": "Ads für den Launch", "link": null, "hell": false, "logo": false, "medien": [{"t": "img", "w": 1708, "h": 3950, "bg": "#f4f4ed", "th": "9ef3769c07d0483699bb", "f": "860660c6178db99566b0"}]}]};
+  const KEY_STORE = "cms-k";
+  const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const toB64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  let PREISE = null;
+  const store = {
+    get(k) { try { return localStorage.getItem(k) || sessionStorage.getItem(k); } catch { return null; } },
+    set(k, v, dauerhaft) { try { (dauerhaft ? localStorage : sessionStorage).setItem(k, v); } catch {} },
+    del(k) { try { localStorage.removeItem(k); sessionStorage.removeItem(k); } catch {} },
+  };
+  async function ableiten(code) {
+    const roh = await crypto.subtle.importKey("raw", new TextEncoder().encode(code.trim()), "PBKDF2", false, ["deriveBits"]);
+    return crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: b64(SALZ), iterations: ITER }, roh, 256);
+  }
+  async function oeffnen(bits) {
+    const key = await crypto.subtle.importKey("raw", bits, "AES-GCM", false, ["decrypt"]);
+    const u = b64(PAKET);
+    PREISE = JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: u.slice(0, 12) }, key, u.slice(12))));
+    $("#lock").hidden = true;
+  }
+
+  // ---------- Code für die Preise ----------
+  const gate = $("#gate"), form = $("#login"), err = $("#err"), go = $("#go");
+  function gateAuf() { gate.hidden = false; err.textContent = ""; $("#p").value = ""; setTimeout(() => $("#p").focus(), 50); }
+  function gateZu() { gate.hidden = true; if (!PREISE && location.hash.startsWith("#preise")) location.hash = "showroom"; }
+  $("#gateX").onclick = gateZu;
+  gate.addEventListener("click", e => { if (e.target === gate) gateZu(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !gate.hidden) gateZu(); });
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    err.textContent = ""; go.disabled = true; go.textContent = "Prüfe …";
+    try {
+      const bits = await ableiten($("#p").value);
+      await oeffnen(bits);
+      store.set(KEY_STORE, toB64(bits), $("#keep").checked);
+      gate.hidden = true;
+      if (location.hash.startsWith("#preise")) route(); else location.hash = "preise";
+    } catch {
+      err.textContent = "Der Code stimmt nicht.";
+      form.classList.remove("shake"); void form.offsetWidth; form.classList.add("shake");
+    }
+    go.disabled = false; go.textContent = "Preise anzeigen";
+  });
+
+  // ---------- Medien ----------
+  const medium = (id, typ) => Promise.resolve("m/" + id + (typ === "video/mp4" ? ".mp4" : ".webp"));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    const img = e.target;
+    medium(img.dataset.id, "image/webp").then(u => { img.onload = () => { img.classList.add("is-in"); img.previousElementSibling?.remove(); }; img.src = u; });
+  }), { rootMargin: "400px" });
+
+  // ---------- Ansichten ----------
+  const katName = id => (D.kategorien.find(k => k.id === id) || {}).name || id;
+  const cover = kat => D.arbeiten.find(a => a.kat === kat && a.medien[0])?.medien[0];
+
+  function preise() {
+    const karte = (p, i) => {
+      const c = cover(p.kat);
+      return `<article class="price" style="animation-delay:${i * 45}ms">
+        <div class="price__img" ${c ? `data-bg="${c.th}"` : ""}></div>
+        <div><div class="price__name">${esc(p.name)}</div><div class="price__text">${esc(p.text)}</div>
+          ${D.arbeiten.some(x => x.kat === p.kat) ? `<a class="price__more" href="#showroom/${p.kat}">Beispiele ansehen →</a>` : ""}</div>
+        ${p.stufen ? `<ul class="price__stufen">${p.stufen.map(s => `<li><span>${esc(s[0])}</span><b>${esc(s[1])}</b></li>`).join("")}</ul>` : ""}
+        <div class="price__val ${p.kunde ? "" : "price__val--ask"}"><small>Preis</small>${p.kunde ? esc(p.kunde) : "Nach Anfrage"}</div>
+      </article>`;
+    };
+    let n = 0;
+    const gruppe = (g, titel) => `<h2 class="pgroup">${titel}</h2><section class="prices">${PREISE.filter(p => (p.gruppe || "einzel") === g).map(p => karte(p, n++)).join("")}</section>`;
+    const rows = gruppe("einzel", "Einzelmodule") + gruppe("kombi", "Kombi-Module");
+    $("#main").innerHTML = `<div class="view">
+      <section class="hero"><div class="eyebrow">Preisübersicht</div><h1>Unsere Produkte</h1>
+      <p>Alle Leistungen mit Einstiegspreisen. Der genaue Preis richtet sich nach dem Umfang. Beispiele gibt es im Showroom.</p></section>
+      ${rows}
+      <p class="note">Alle Preise netto zzgl. MwSt. Gern machen wir Ihnen ein Angebot: <a href="mailto:info@conceptsmedia.de">info@conceptsmedia.de</a></p></div>`;
+    document.querySelectorAll("[data-bg]").forEach(el => medium(el.dataset.bg, "image/webp").then(u => el.style.backgroundImage = `url(${u})`));
+  }
+
+  function showroom(kat) {
+    const liste = kat ? D.arbeiten.filter(a => a.kat === kat) : D.arbeiten;
+    const zahl = id => D.arbeiten.filter(a => a.kat === id).length;
+    const chips = [`<button class="chip ${kat ? "" : "is-on"}" data-kat="">Alle <b>${D.arbeiten.length}</b></button>`]
+      .concat(D.kategorien.filter(k => zahl(k.id)).map(k => `<button class="chip ${kat === k.id ? "is-on" : ""}" data-kat="${k.id}">${esc(k.name)} <b>${zahl(k.id)}</b></button>`)).join("");
+    const karten = liste.map((a, i) => {
+      const m = a.medien[0], idx = D.arbeiten.indexOf(a);
+      const vid = a.medien.find(x => x.t === "video");
+      const bilder = a.medien.filter(x => x.t === "img").length;
+      const zaehler = vid ? `▶ ${Math.floor(vid.dauer / 60)}:${String(vid.dauer % 60).padStart(2, "0")}` : `${bilder} ${bilder === 1 ? "Bild" : "Bilder"}`;
+      const bg = a.logo && m.bg ? `background:${m.bg};` : "";
+      return `<button class="work ${a.hell ? "work--hell" : ""} ${a.logo ? "work--logo" : ""}" data-i="${idx}" style="${bg}animation-delay:${Math.min(i, 12) * 40}ms">
+        <div class="skel"></div><img class="work__img" data-id="${m.th}" alt="">
+        <span class="work__tag">${esc(katName(a.kat))}</span><span class="work__count ${a.medien.length === 1 ? "is-1" : ""}">${zaehler}</span>
+        ${m.t === "video" ? '<span class="play"></span>' : ""}
+        <span class="work__meta"><span class="work__kunde">${esc(a.kunde)}</span><br><span class="work__titel">${esc(a.titel)}</span></span>
+      </button>`;
+    }).join("");
+    const titel = kat ? katName(kat) : "Showroom";
+    $("#main").innerHTML = `<div class="view">
+      <section class="hero"><div class="eyebrow">Showroom</div><h1>${esc(titel)}</h1>
+      <p>Arbeiten, die wir bisher gemacht haben, sortiert nach unseren Produkten.</p></section>
+      <div class="chips">${chips}</div><section class="grid">${karten}</section></div>`;
+    document.querySelectorAll(".work__img").forEach(img => io.observe(img));
+    document.querySelectorAll(".chip").forEach(c => c.onclick = () => { location.hash = "showroom" + (c.dataset.kat ? "/" + c.dataset.kat : ""); });
+    document.querySelectorAll(".work").forEach(w => w.onclick = () => lightbox(D.arbeiten[+w.dataset.i]));
+  }
+
+  // ---------- Lightbox ----------
+  let lb = null;
+  function lightbox(a, start = 0) {
+    lb?.remove();
+    let pos = start, tok = 0;
+    lb = document.createElement("div");
+    lb.className = "lb"; lb.setAttribute("role", "dialog"); lb.setAttribute("aria-modal", "true");
+    const mehrere = a.medien.length > 1;
+    lb.innerHTML = `<div class="lb__top"><div class="lb__title">${esc(a.kunde)}<span>${esc(katName(a.kat))} · ${esc(a.titel)}</span></div>
+      ${a.link ? `<a class="lb__link" href="${esc(a.link)}" target="_blank" rel="noopener noreferrer">Live <b>ansehen</b> ↗</a>` : ""}
+      <button class="lb__x" aria-label="Schließen" ${a.link ? "" : 'style="margin-left:auto"'}>×</button></div>
+      <div class="lb__stage ${a.hell ? "is-hell" : ""}"></div>
+      <div class="lb__thumbs">${mehrere ? a.medien.map((m, i) => `<button class="lb__th" data-j="${i}"><img data-id="${m.th}" alt=""></button>`).join("") : ""}</div>`;
+    document.body.appendChild(lb); document.body.style.overflow = "hidden";
+    const stage = $(".lb__stage", lb);
+    lb.querySelectorAll(".lb__th img").forEach(img => medium(img.dataset.id, "image/webp").then(u => img.src = u));
+    lb.querySelectorAll(".lb__th").forEach(b => b.onclick = () => zeige(+b.dataset.j));
+    $(".lb__x", lb).onclick = zu;
+    lb.addEventListener("click", e => { if (e.target === lb || e.target === stage) zu(); });
+
+    async function zeige(j) {
+      pos = (j + a.medien.length) % a.medien.length; const my = ++tok;
+      const m = a.medien[pos];
+      lb.querySelectorAll(".lb__th").forEach((b, i) => { b.classList.toggle("is-on", i === pos); if (i === pos) b.scrollIntoView({ inline: "center", block: "nearest" }); });
+      stage.innerHTML = `${mehrere ? '<button class="lb__nav lb__prev" aria-label="Zurück">‹</button><button class="lb__nav lb__next" aria-label="Weiter">›</button>' : ""}
+        <div class="lb__load"><div class="spin"></div>${m.t === "video" ? "Film wird geladen …" : ""}</div>`;
+      stage.querySelector(".lb__prev")?.addEventListener("click", () => zeige(pos - 1));
+      stage.querySelector(".lb__next")?.addEventListener("click", () => zeige(pos + 1));
+      try {
+        if (m.t === "video") {
+          const [poster, src] = await Promise.all([medium(m.f, "image/webp"), medium(m.v, "video/mp4")]);
+          if (my !== tok) return;
+          const v = document.createElement("video");
+          v.src = src; v.poster = poster; v.controls = true; v.playsInline = true; v.autoplay = true;
+          stage.querySelector(".lb__load").replaceWith(v);
+        } else {
+          const src = await medium(m.f, "image/webp");
+          if (my !== tok) return;
+          const img = new Image(); img.src = src; img.alt = a.kunde;
+          stage.querySelector(".lb__load").replaceWith(img);
+        }
+      } catch { if (my === tok) stage.querySelector(".lb__load").textContent = "Konnte nicht geladen werden."; }
+    }
+    let x0 = null;
+    stage.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", e => { if (x0 === null || !mehrere) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) zeige(pos + (dx < 0 ? 1 : -1)); x0 = null; });
+    lb._key = e => { if (e.key === "Escape") zu(); if (mehrere && e.key === "ArrowRight") zeige(pos + 1); if (mehrere && e.key === "ArrowLeft") zeige(pos - 1); };
+    document.addEventListener("keydown", lb._key);
+    zeige(start);
+  }
+  function zu() {
+    if (!lb) return;
+    lb.querySelectorAll("video").forEach(v => v.pause());
+    document.removeEventListener("keydown", lb._key); lb.remove(); lb = null; document.body.style.overflow = "";
+  }
+
+  // ---------- Navigation ----------
+  function route() {
+    zu();
+    const [tab, kat] = (location.hash.slice(1) || "showroom").split("/");
+    if (tab === "preise" && !PREISE) { gateAuf(); if (document.querySelector(".view")) return; }
+    document.querySelectorAll(".tab").forEach(t => t.classList.toggle("is-on", t.dataset.tab === (tab === "preise" && !PREISE ? "showroom" : tab)));
+    tab === "preise" && PREISE ? preise() : showroom(tab === "showroom" ? kat : "");
+    window.scrollTo({ top: 0 });
+  }
+  document.querySelectorAll(".tab").forEach(t => t.onclick = () => {
+    if (t.dataset.tab === "preise" && !PREISE) { gateAuf(); return; }
+    location.hash = t.dataset.tab;
+  });
+  const EMBED = document.documentElement.classList.contains("is-embed");
+  if (EMBED) {
+    const zuSchliessen = () => parent.postMessage("srx-close", "*");
+    document.querySelector("a.out").hidden = true; $("#srxClose").hidden = false; $("#srxClose").onclick = zuSchliessen;
+    document.querySelector(".top__home").onclick = e => { e.preventDefault(); zuSchliessen(); };
+    window.addEventListener("keydown", e => { if (e.key === "Escape" && gate.hidden && !lb) zuSchliessen(); }, true);
+  }
+  window.addEventListener("hashchange", route);
+  const gemerkt = store.get(KEY_STORE);
+  (gemerkt ? oeffnen(b64(gemerkt)).catch(() => store.del(KEY_STORE)) : Promise.resolve()).finally(route);
+})();
+</script>
+</body>
+</html>
